@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="shortcut icon" href="fav.jpg" type="image/x-icon">
+    <title>MQTT Message Viewer</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <h2>Receiving status from Topic:<span class="imp"><%=topic%></span> and Client:<span class="imp"><%=client%></span></h2>
+    <h1>Message List</h1>
+    <ul id="messages"></ul>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const socket = io();
+const messageList = document.getElementById('messages');
+socket.on('message', function(message) {
+  console.log(message)
+  const listItem = document.createElement('li');
+  const messageText = document.createTextNode(message.payload);
+  listItem.appendChild(messageText);
+  messageList.appendChild(listItem);
+});
+
+    </script>
+  </body>
+</html>
