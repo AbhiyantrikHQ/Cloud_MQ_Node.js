@@ -12,15 +12,18 @@
     <script src="/socket.io/socket.io.js"></script>
     <script>
       const socket = io();
-const messageList = document.getElementById('messages');
-socket.on('message', function(message) {
-  console.log(message)
-  const listItem = document.createElement('li');
-  const messageText = document.createTextNode(message.payload);
-  listItem.appendChild(messageText);
-  messageList.appendChild(listItem);
-});
-
+      const messageList = document.getElementById('messages');
+      socket.on('message', function(message) {
+        const listItem = document.createElement('li');
+        listItem.innerHTML = '<span class="date">' + message.date +',' + '</span> <span class="topic">' + message.topic +' :' + '</span> <span class="payload">' + message.payload + '</span>';
+        messageList.appendChild(listItem);
+      });
     </script>
   </body>
 </html>
+
+<style>
+  .payload {
+    color: blue;
+  }
+</style>
