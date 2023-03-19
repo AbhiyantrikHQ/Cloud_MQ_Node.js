@@ -39,6 +39,31 @@ mqttClient.on("connect", function () {
   mqttClient.subscribe(MQTT_TOPIC);
 });
 
+// mqttClient.on("message", function (topic, message) {
+//   let str = topic;
+//   let UserName = str.split("/")[1];
+//   let macAdd = str.split("/")[2];
+
+//   // Get the current date and time formatted as a string
+//   const date = new Date().toLocaleString();
+
+//   console.log("UserName: " + UserName);
+//   console.log("macAdd: " + macAdd);
+
+//   // Emit the received message to all connected clients as an object
+//   io.emit("message", {
+//     date: date,
+//     topic: topic.toString(),
+//     payload: message.toString(),
+//   });
+//   console.log(
+//     "Received message on topic:",
+//     topic,
+//     "with payload:",
+//     message.toString()
+//   );
+// });
+
 mqttClient.on("message", function (topic, message) {
   let str = topic;
   let UserName = str.split("/")[1];
@@ -50,19 +75,32 @@ mqttClient.on("message", function (topic, message) {
   console.log("UserName: " + UserName);
   console.log("macAdd: " + macAdd);
 
-  // Emit the received message to all connected clients as an object
-  io.emit("message", {
-    date: date,
-    topic: topic.toString(),
-    payload: message.toString(),
-  });
-  console.log(
-    "Received message on topic:",
-    topic,
-    "with payload:",
-    message.toString()
-  );
+  // Check if the message is "offline"
+  if (message.toString().toLowerCase() === "offline") {
+    // Emit the received message as "OFFLINE" to all connected clients as an object
+    io.emit("message", {
+      date: date,
+      topic: topic.toString(),
+      payload: "OFFLINE",
+    });
+    console.log("Received message: OFFLINE");
+  } else {
+    // Emit the received message to all connected clients as an object
+    io.emit("message", {
+      date: date,
+      topic: topic.toString(),
+      payload: message.toString(),
+    });
+    console.log(
+      "Received message on topic:",
+      topic,
+      "with payload:",
+      message.toString()
+    );
+  }
 });
+
+
 
 app.get("/publish", (req, res) => {
   const username = req.query.username;

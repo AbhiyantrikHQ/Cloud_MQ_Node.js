@@ -15,7 +15,11 @@
       const messageList = document.getElementById('messages');
       socket.on('message', function(message) {
         const listItem = document.createElement('li');
-        listItem.innerHTML = '<span class="date">' + message.date +',' + '</span> <span class="topic">' + message.topic +' :' + '</span> <span class="payload">' + message.payload + '</span>';
+        if (message.payload.toLowerCase() === 'offline') {
+          listItem.innerHTML = '<span class="date">' + message.date +',' + '</span> <span class="topic">' + message.topic +' :' + '</span> <span class="payload" style="color:red">' + message.payload + '</span>';
+        } else {
+          listItem.innerHTML = '<span class="date">' + message.date +',' + '</span> <span class="topic">' + message.topic +' :' + '</span> <span class="payload">' + message.payload + '</span>';
+        }
         messageList.appendChild(listItem);
       });
     </script>
