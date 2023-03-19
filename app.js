@@ -1,12 +1,12 @@
-const express = require('express');
-const http = require('http');
-const mqtt = require('mqtt');
-const socketio = require('socket.io');
-const bodyParser = require('body-parser');
-require('dotenv').config();
+const express = require("express");
+const http = require("http");
+const mqtt = require("mqtt");
+const socketio = require("socket.io");
+const bodyParser = require("body-parser");
+require("dotenv").config();
 
-const MQTT_CLIENT = process.env.MQTT_CLIENT
-const MQTT_TOPIC = process.env.MQTT_TOPIC
+const MQTT_CLIENT = process.env.MQTT_CLIENT;
+const MQTT_TOPIC = process.env.MQTT_TOPIC;
 
 // var con = require("./connection");
 // const { connect, query } = require("./connection");
@@ -27,23 +27,19 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // View engine setup
 app.use(express.static("public"));
-app.set('view engine', 'ejs');
+app.set("view engine", "ejs");
 
 // Serve the HTML page
-app.get('/', (req, res) => {
-  res.render('index',{client: MQTT_CLIENT, topic:MQTT_TOPIC});
+app.get("/", (req, res) => {
+  res.render("index", { client: MQTT_CLIENT, topic: MQTT_TOPIC });
 });
 
-
 // Listen for MQTT messages
-mqttClient.on('connect', function () {
+mqttClient.on("connect", function () {
   mqttClient.subscribe(MQTT_TOPIC);
 });
 
-  
-
-
-mqttClient.on('message', function (topic, message) {
+mqttClient.on("message", function (topic, message) {
   let str = topic;
   let UserName = str.split("/")[1];
   let macAdd = str.split("/")[2];
@@ -51,90 +47,108 @@ mqttClient.on('message', function (topic, message) {
   // Get the current date and time formatted as a string
   const date = new Date().toLocaleString();
 
-  console.log('UserName: ' + UserName);
-  console.log('macAdd: ' + macAdd);
+  console.log("UserName: " + UserName);
+  console.log("macAdd: " + macAdd);
 
   // Emit the received message to all connected clients as an object
-  io.emit('message', {date: date, topic: topic.toString(), payload: message.toString()});
-  console.log('Received message on topic:', topic, 'with payload:', message.toString() );
+  io.emit("message", {
+    date: date,
+    topic: topic.toString(),
+    payload: message.toString(),
+  });
+  console.log(
+    "Received message on topic:",
+    topic,
+    "with payload:",
+    message.toString()
+  );
 });
 
-
-app.get('/publish', (req, res) => {
+app.get("/publish", (req, res) => {
   const username = req.query.username;
   const macaddress = req.query.macaddress;
   const topic = `users/${username}/${macaddress}`;
   const message = "This is the msg";
 
   if (!topic) {
-    return res.status(400).send('No MQTT topic provided');
+    return res.status(400).send("No MQTT topic provided");
   }
-
 
   mqttClient.publish(topic, message, (err) => {
     if (err) {
       console.error(`Error publishing to ${topic}: ${err}`);
-      return res.status(500).send('Error publishing to MQTT topic');
+      return res.status(500).send("Error publishing to MQTT topic");
     }
     console.log(`Message "${message}" published to ${topic}`);
-    return res.status(200).send('Message published to MQTT topic');
+    return res.status(200).send("Message published to MQTT topic");
   });
-
-  
 });
 
 //routes for app Php -> Nodejs
 //walls
 
-app.post('/insertWalls', (req, res) => {
-  const { name, v1, v2, v3, v4, innerWallColourNormal, innerWallColourLit, outerWallColourNormal, outerWallColourLit, tileColourNormal, tileColourLit } = req.body;
+app.post("/insertWalls", (req, res) => {
+  const {
+    name,
+    v1,
+    v2,
+    v3,
+    v4,
+    innerWallColourNormal,
+    innerWallColourLit,
+    outerWallColourNormal,
+    outerWallColourLit,
+    tileColourNormal,
+    tileColourLit,
+  } = req.body;
   const sql = `INSERT INTO walls(name, v1, v2, v3, v4, innerWallColourNormal, innerWallColourLit, outerWallColourNormal, outerWallColourLit, tileColourNormal, tileColourLit) 
   VALUES ('${name}', '${v1}', '${v2}', '${v3}', '${v4}', '${innerWallColourNormal}', '${innerWallColourLit}', '${outerWallColourNormal}', '${outerWallColourLit}', '${tileColourNormal}', '${tileColourLit}')`;
   con.query(sql, (err, result) => {
     if (err) {
-      console.log('Error inserting data into walls table: ', err);
-      return res.status(500).send('Error inserting data into walls table');
+      console.log("Error inserting data into walls table: ", err);
+      return res.status(500).send("Error inserting data into walls table");
     }
-    console.log('Data inserted successfully into walls table');
-    return res.status(200).send('Data inserted successfully into walls table');
+    console.log("Data inserted successfully into walls table");
+    return res.status(200).send("Data inserted successfully into walls table");
   });
 });
 
-app.post('/deleteWalls', (req, res) => {
+app.post("/deleteWalls", (req, res) => {
   const { wlname } = req.body;
   const sql = `DELETE FROM walls WHERE name = '${wlname}'`;
   con.query(sql, (err, result) => {
     if (err) {
-      console.log('Error deleting data from walls table: ', err);
-      return res.status(500).send('Error deleting data from walls table');
+      console.log("Error deleting data from walls table: ", err);
+      return res.status(500).send("Error deleting data from walls table");
     }
-    console.log('Data deleted successfully from walls table');
-    return res.status(200).send('Data deleted successfully from walls table');
+    console.log("Data deleted successfully from walls table");
+    return res.status(200).send("Data deleted successfully from walls table");
   });
 });
 
-app.get('/getWalls', (req, res) => {
-  const sql = 'SELECT name,v1,v2,v3,v4,innerWallColourNormal,innerWallColourLit,outerWallColourNormal,outerWallColourLit,tileColourNormal,tileColourLit FROM walls';
+app.get("/getWalls", (req, res) => {
+  const sql =
+    "SELECT name,v1,v2,v3,v4,innerWallColourNormal,innerWallColourLit,outerWallColourNormal,outerWallColourLit,tileColourNormal,tileColourLit FROM walls";
   con.query(sql, (err, result) => {
     if (err) {
-      console.log('Error fetching data from walls table: ', err);
-      return res.status(500).send('Error fetching data from walls table');
+      console.log("Error fetching data from walls table: ", err);
+      return res.status(500).send("Error fetching data from walls table");
     }
-    console.log('Data fetched successfully from walls table');
+    console.log("Data fetched successfully from walls table");
     return res.status(200).send({ Items: result });
   });
 });
 
-app.post('/updateobject', (req, res) => {
+app.post("/updateobject", (req, res) => {
   const { name, v1, v2, v3, v4 } = req.body;
   const sql = `UPDATE objects SET v1='${v1}', v2='${v2}', v3='${v3}', v4='${v4}' WHERE name='${name}'`;
   con.query(sql, (error, results) => {
     if (error) {
-      console.error('Error updating object:', error);
-      res.status(500).send('Error updating object');
+      console.error("Error updating object:", error);
+      res.status(500).send("Error updating object");
     } else {
-      console.log('Object updated successfully');
-      res.status(200).send('Object updated successfully');
+      console.log("Object updated successfully");
+      res.status(200).send("Object updated successfully");
     }
   });
 });
@@ -143,7 +157,7 @@ app.post('/updateobject', (req, res) => {
 
 //object
 // Route to delete an object
-app.post('/deleteobject', (req, res) => {
+app.post("/deleteobject", (req, res) => {
   const object_id = req.body.object_id;
   const sql = `DELETE FROM objects WHERE name = '${object_id}'`;
   con.query(sql, (err, result) => {
@@ -153,7 +167,7 @@ app.post('/deleteobject', (req, res) => {
 });
 
 // Route to add an object
-app.post('/addobject', (req, res) => {
+app.post("/addobject", (req, res) => {
   const name = req.body.name;
   const baseType = req.body.baseType;
   const position = req.body.position;
@@ -167,7 +181,7 @@ app.post('/addobject', (req, res) => {
 });
 
 // Route to get all objects
-app.get('/getobjects', (req, res) => {
+app.get("/getobjects", (req, res) => {
   const sql = `SELECT name, baseType, position, rotation, roomName FROM objects`;
   con.query(sql, (err, result) => {
     if (err) throw err;
@@ -176,7 +190,7 @@ app.get('/getobjects', (req, res) => {
 });
 
 // Route to update an object
-app.post('/updateobject', (req, res) => {
+app.post("/updateobject", (req, res) => {
   const name = req.body.name;
   const position = req.body.position;
   const rotation = req.body.rotation;
@@ -191,15 +205,13 @@ app.post('/updateobject', (req, res) => {
 //object
 //routes for app Php -> Nodejs
 
-
-
 // Listen for socket.io connections
-io.on('connection', (socket) => {
-  console.log('A user has connected to the socket.io server');
+io.on("connection", (socket) => {
+  console.log("A user has connected to the socket.io server");
 
   // Listen for messages from clients
-  socket.on('message', (data) => {
-    console.log('Message received on socket.io server:', data);
+  socket.on("message", (data) => {
+    console.log("Message received on socket.io server:", data);
   });
 });
 
@@ -207,7 +219,6 @@ io.on('connection', (socket) => {
 const port = 3000 || process.env.PORT;
 
 server.listen(port, function () {
-    console.log(`Monitoring Server is up and Running on port:${port}`);
-    console.log(`http://localhost:${port}`)
-
+  console.log(`Monitoring Server is up and Running on port:${port}`);
+  console.log(`http://localhost:${port}`);
 });
