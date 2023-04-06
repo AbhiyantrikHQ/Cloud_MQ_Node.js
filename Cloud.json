@@ -1,0 +1,1185 @@
+[
+    {
+        "id": "02e369dabf186465",
+        "type": "tab",
+        "label": "FromSWB",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "f6784da6822cad8c",
+        "type": "tab",
+        "label": "ToSWB",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "dcb6eb2b3a2cefc1",
+        "type": "tab",
+        "label": "ObjectsCRUD",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "3b43a8f9bf7f52ae",
+        "type": "tab",
+        "label": "WallsCRUD",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "eacd39a59e5949df",
+        "type": "tab",
+        "label": "UserCRUD",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "0c5cc633258e8e0e",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "3142eebd969dc321",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "142.93.212.127",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "c8d18af9033ef444",
+        "type": "MySQLdatabase",
+        "name": "",
+        "host": "142.93.212.127",
+        "port": "3306",
+        "db": "meta4home",
+        "tz": "",
+        "charset": "UTF8"
+    },
+    {
+        "id": "b9a1cb41.3c873",
+        "type": "MySQLdatabase",
+        "name": "mydb",
+        "host": "localhost",
+        "port": "3306",
+        "db": "meta4home",
+        "tz": "",
+        "charset": "UTF8"
+    },
+    {
+        "id": "bd6b660672fabc1f",
+        "type": "inject",
+        "z": "02e369dabf186465",
+        "name": "FromSWBMsg",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"username\":\"kiran\",\"swbID\":\"AB:CD:EF:GH\",\"swno\":1,\"state\":1}",
+        "payloadType": "json",
+        "x": 220,
+        "y": 140,
+        "wires": [
+            [
+                "513cbbe25505aabe"
+            ]
+        ]
+    },
+    {
+        "id": "dda1a05082080b9f",
+        "type": "mqtt out",
+        "z": "02e369dabf186465",
+        "name": "",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "3142eebd969dc321",
+        "x": 590,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "513cbbe25505aabe",
+        "type": "function",
+        "z": "02e369dabf186465",
+        "name": "pre processing",
+        "func": "var topic = \"meta4home/\" +\"FromSWB/\"+ msg.payload.username + \"/\" + msg.payload.swbID ;\nmsg.topic = topic;\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 140,
+        "wires": [
+            [
+                "437812c693c61f75",
+                "dda1a05082080b9f"
+            ]
+        ]
+    },
+    {
+        "id": "686c68ee6e20be55",
+        "type": "mqtt in",
+        "z": "02e369dabf186465",
+        "name": "",
+        "topic": "meta4home/FromSWB/#",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "3142eebd969dc321",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 270,
+        "y": 320,
+        "wires": [
+            [
+                "881009f48b411100",
+                "927db0d9bea48380"
+            ]
+        ]
+    },
+    {
+        "id": "437812c693c61f75",
+        "type": "debug",
+        "z": "02e369dabf186465",
+        "name": "debug 11",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 560,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "881009f48b411100",
+        "type": "function",
+        "z": "02e369dabf186465",
+        "name": "Insert Function",
+        "func": "var username = msg.payload.username;\nvar swbID = msg.payload.swbID;\nvar swno = msg.payload.swno;\nvar state = msg.payload.state;\n\n//msg.topic = \"INSERT INTO users (username, password) VALUES ('\" + username + \"', '\" + password + \"')\";\n//msg.topic = \"INSERT INTO users (username, password) VALUES ('gautam','hi')\";\n\nmsg.topic = \"INSERT INTO swb(username,swbID,swno,state) VALUES ('\" + username + \"','\" + swbID + \"','\" + swno + \"','\" + state + \"')\";\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 320,
+        "wires": [
+            [
+                "15c625ff185d9c45"
+            ]
+        ]
+    },
+    {
+        "id": "927db0d9bea48380",
+        "type": "debug",
+        "z": "02e369dabf186465",
+        "name": "debug 12",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 480,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "15c625ff185d9c45",
+        "type": "mysql",
+        "z": "02e369dabf186465",
+        "mydb": "c8d18af9033ef444",
+        "name": "",
+        "x": 810,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "482035311319f970",
+        "type": "http in",
+        "z": "f6784da6822cad8c",
+        "name": "",
+        "url": "/swbInsert",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 320,
+        "y": 220,
+        "wires": [
+            [
+                "7e70a244b41a4234"
+            ]
+        ]
+    },
+    {
+        "id": "16922d9f7e880469",
+        "type": "mqtt out",
+        "z": "f6784da6822cad8c",
+        "name": "",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "3142eebd969dc321",
+        "x": 810,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "2916509242452d09",
+        "type": "mqtt in",
+        "z": "f6784da6822cad8c",
+        "name": "",
+        "topic": "meta4home/ToSWB/#",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "3142eebd969dc321",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 340,
+        "y": 320,
+        "wires": [
+            [
+                "b95161c185a9fe92"
+            ]
+        ]
+    },
+    {
+        "id": "b95161c185a9fe92",
+        "type": "debug",
+        "z": "f6784da6822cad8c",
+        "name": "debug 13",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 560,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "7e70a244b41a4234",
+        "type": "function",
+        "z": "f6784da6822cad8c",
+        "name": "pre processing",
+        "func": "var topic = \"meta4home/\" +\"ToSWB/\"+ msg.payload.username + \"/\" + msg.payload.swbID ;\nmsg.topic = topic;\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 220,
+        "wires": [
+            [
+                "16922d9f7e880469"
+            ]
+        ]
+    },
+    {
+        "id": "02c5c57cedd7fee4",
+        "type": "http in",
+        "z": "dcb6eb2b3a2cefc1",
+        "name": "",
+        "url": "/objectInsert",
+        "method": "post",
+        "upload": true,
+        "swaggerDoc": "",
+        "x": 130,
+        "y": 120,
+        "wires": [
+            [
+                "33158d8dab0a4664"
+            ]
+        ]
+    },
+    {
+        "id": "33158d8dab0a4664",
+        "type": "function",
+        "z": "dcb6eb2b3a2cefc1",
+        "name": "Insert Function",
+        "func": "var name = msg.payload.name;\nvar baseType = msg.payload.baseType;\nvar position = msg.payload.position;\nvar rotation = msg.payload.rotation;\nvar roomName = msg.payload.roomName;\nvar floor = msg.payload.floor;\nvar userid = msg.payload.userid;\n\n//msg.topic = \"INSERT INTO users (username, password) VALUES ('\" + username + \"', '\" + password + \"')\";\n//msg.topic = \"INSERT INTO users (username, password) VALUES ('gautam','hi')\";\n\nmsg.topic = \"INSERT INTO objects(name,baseType,position,rotation,roomName,floor,userid) VALUES ('\" + name + \"','\" + baseType + \"','\" + position + \"','\" + rotation + \"','\" + roomName + \"','\" + floor + \"','\" + userid + \"')\";\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 120,
+        "wires": [
+            [
+                "214987fb653487ad"
+            ]
+        ]
+    },
+    {
+        "id": "214987fb653487ad",
+        "type": "mysql",
+        "z": "dcb6eb2b3a2cefc1",
+        "mydb": "c8d18af9033ef444",
+        "name": "",
+        "x": 510,
+        "y": 120,
+        "wires": [
+            [
+                "0547237a185b373b"
+            ]
+        ]
+    },
+    {
+        "id": "0547237a185b373b",
+        "type": "debug",
+        "z": "dcb6eb2b3a2cefc1",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 660,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "bbac68c32c8ed629",
+        "type": "mysql",
+        "z": "dcb6eb2b3a2cefc1",
+        "mydb": "c8d18af9033ef444",
+        "name": "",
+        "x": 510,
+        "y": 200,
+        "wires": [
+            [
+                "04ba2c9fbeb45a9d",
+                "a90e48c35157e1e0"
+            ]
+        ]
+    },
+    {
+        "id": "78e27182ef8914d1",
+        "type": "function",
+        "z": "dcb6eb2b3a2cefc1",
+        "name": "Read Function",
+        "func": "var userid=msg.payload.userid;\n\nmsg.topic = \"SELECT * FROM objects WHERE userid='\"+userid+\"'\";\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 200,
+        "wires": [
+            [
+                "bbac68c32c8ed629"
+            ]
+        ]
+    },
+    {
+        "id": "04ba2c9fbeb45a9d",
+        "type": "debug",
+        "z": "dcb6eb2b3a2cefc1",
+        "name": "debug 6",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "payload",
+        "statusType": "auto",
+        "x": 710,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "62e9bc01ee2e2c6e",
+        "type": "http in",
+        "z": "dcb6eb2b3a2cefc1",
+        "name": "",
+        "url": "/objectRead",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 130,
+        "y": 200,
+        "wires": [
+            [
+                "78e27182ef8914d1"
+            ]
+        ]
+    },
+    {
+        "id": "71bdb5a59523b359",
+        "type": "http in",
+        "z": "dcb6eb2b3a2cefc1",
+        "name": "",
+        "url": "/objectUpdate",
+        "method": "post",
+        "upload": true,
+        "swaggerDoc": "",
+        "x": 130,
+        "y": 280,
+        "wires": [
+            [
+                "f2dd59edc58e6e95"
+            ]
+        ]
+    },
+    {
+        "id": "f2dd59edc58e6e95",
+        "type": "function",
+        "z": "dcb6eb2b3a2cefc1",
+        "name": "Update Function",
+        "func": "var name = msg.payload.name;\nvar baseType = msg.payload.baseType;\nvar position = msg.payload.position;\nvar rotation = msg.payload.rotation;\nvar roomName = msg.payload.roomName;\nvar floor = msg.payload.floor;\nvar userid=msg.payload.userid;\n\n//msg.topic = \"UPDATE users (username, password) SET ('gautam','hi')\";\n//msg.topic = \"INSERT INTO users (username, password) VALUES ('\" + username + \"', '\" + password + \"')\";\n\nmsg.topic = \"UPDATE objects SET position='\" + position + \"' ,rotation= '\" + rotation + \"', roomName= '\" + roomName + \"',floor= '\" + floor + \"'  WHERE name = '\" + name + \"'AND userid='\" + userid + \"'\";\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 280,
+        "wires": [
+            [
+                "0a043930f980f9c9"
+            ]
+        ]
+    },
+    {
+        "id": "0a043930f980f9c9",
+        "type": "mysql",
+        "z": "dcb6eb2b3a2cefc1",
+        "mydb": "c8d18af9033ef444",
+        "name": "",
+        "x": 510,
+        "y": 280,
+        "wires": [
+            [
+                "2368d79c177da0ea"
+            ]
+        ]
+    },
+    {
+        "id": "2368d79c177da0ea",
+        "type": "debug",
+        "z": "dcb6eb2b3a2cefc1",
+        "name": "debug 7",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 660,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "dbb559b4f356016b",
+        "type": "http in",
+        "z": "dcb6eb2b3a2cefc1",
+        "name": "",
+        "url": "/objectDelete",
+        "method": "post",
+        "upload": true,
+        "swaggerDoc": "",
+        "x": 130,
+        "y": 360,
+        "wires": [
+            [
+                "e9bfd46e476da83b"
+            ]
+        ]
+    },
+    {
+        "id": "e9bfd46e476da83b",
+        "type": "function",
+        "z": "dcb6eb2b3a2cefc1",
+        "name": "Delete Function",
+        "func": "var name = msg.payload.name;\nvar userid=msg.payload.userid;\n\n//msg.topic = \"UPDATE users (username, password) SET ('gautam','hi')\";\n//msg.topic = \"INSERT INTO users (username, password) VALUES ('\" + username + \"', '\" + password + \"')\";\nmsg.topic = \"DELETE FROM objects WHERE name ='\" + name + \"'AND userid='\" + userid + \"' \";\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 360,
+        "wires": [
+            [
+                "beb8d1df2d7762e2"
+            ]
+        ]
+    },
+    {
+        "id": "beb8d1df2d7762e2",
+        "type": "mysql",
+        "z": "dcb6eb2b3a2cefc1",
+        "mydb": "c8d18af9033ef444",
+        "name": "",
+        "x": 510,
+        "y": 360,
+        "wires": [
+            [
+                "0920d0f8b9ee6ab8"
+            ]
+        ]
+    },
+    {
+        "id": "0920d0f8b9ee6ab8",
+        "type": "debug",
+        "z": "dcb6eb2b3a2cefc1",
+        "name": "debug 8",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 660,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "a90e48c35157e1e0",
+        "type": "http response",
+        "z": "dcb6eb2b3a2cefc1",
+        "name": "",
+        "statusCode": "",
+        "headers": {
+            "content-type": "application/json"
+        },
+        "x": 750,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "02f849ac92992629",
+        "type": "http in",
+        "z": "3b43a8f9bf7f52ae",
+        "name": "",
+        "url": "/wallInsert",
+        "method": "post",
+        "upload": true,
+        "swaggerDoc": "",
+        "x": 200,
+        "y": 80,
+        "wires": [
+            [
+                "8d26ab2f5310c3f0"
+            ]
+        ]
+    },
+    {
+        "id": "8d26ab2f5310c3f0",
+        "type": "function",
+        "z": "3b43a8f9bf7f52ae",
+        "name": "Insert Function",
+        "func": "var name = msg.payload.name;\nvar v1 = msg.payload.v1;\nvar v2 = msg.payload.v2;\nvar v3 = msg.payload.v3;\nvar v4 = msg.payload.v4;\nvar inColor = msg.payload.inColor;\nvar outColor = msg.payload.outColor;\nvar tileColor = msg.payload.tileColor;\nvar userid = msg.payload.userid;\n\n//msg.topic = \"INSERT INTO users (username, password) VALUES ('\" + username + \"', '\" + password + \"')\";\n//msg.topic = \"INSERT INTO users (username, password) VALUES ('gautam','hi')\";\n\nmsg.topic = \"INSERT INTO walls(name,v1,v2,v3,v4,inColor,outColor,tileColor,userid) VALUES ('\" + name + \"','\" + v1 + \"','\" + v2 + \"','\" + v3 + \"','\" + v4 + \"','\" + inColor + \"','\" + outColor + \"','\" + tileColor + \"','\" + userid + \"')\";\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 80,
+        "wires": [
+            [
+                "b01cfb3890468da6"
+            ]
+        ]
+    },
+    {
+        "id": "b01cfb3890468da6",
+        "type": "mysql",
+        "z": "3b43a8f9bf7f52ae",
+        "mydb": "c8d18af9033ef444",
+        "name": "",
+        "x": 590,
+        "y": 80,
+        "wires": [
+            [
+                "df63c03aef32e011"
+            ]
+        ]
+    },
+    {
+        "id": "df63c03aef32e011",
+        "type": "debug",
+        "z": "3b43a8f9bf7f52ae",
+        "name": "debug 14",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 740,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "fc45a4ac116a1eb2",
+        "type": "mysql",
+        "z": "3b43a8f9bf7f52ae",
+        "mydb": "c8d18af9033ef444",
+        "name": "",
+        "x": 590,
+        "y": 140,
+        "wires": [
+            [
+                "c8fa0b0ce026d36b",
+                "08820e03becef08b"
+            ]
+        ]
+    },
+    {
+        "id": "372931c5d36b39bb",
+        "type": "function",
+        "z": "3b43a8f9bf7f52ae",
+        "name": "Read Function",
+        "func": "var userid=msg.payload.userid;\nmsg.topic = \"SELECT * FROM walls where userid='\"+userid+\"'\";\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 140,
+        "wires": [
+            [
+                "fc45a4ac116a1eb2"
+            ]
+        ]
+    },
+    {
+        "id": "c8fa0b0ce026d36b",
+        "type": "debug",
+        "z": "3b43a8f9bf7f52ae",
+        "name": "debug 15",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "payload",
+        "statusType": "auto",
+        "x": 790,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "4b67ab1e333537d4",
+        "type": "http in",
+        "z": "3b43a8f9bf7f52ae",
+        "name": "",
+        "url": "/wallread",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 200,
+        "y": 140,
+        "wires": [
+            [
+                "372931c5d36b39bb"
+            ]
+        ]
+    },
+    {
+        "id": "3951b39e6bee2ffb",
+        "type": "http in",
+        "z": "3b43a8f9bf7f52ae",
+        "name": "",
+        "url": "/wallUpdate",
+        "method": "post",
+        "upload": true,
+        "swaggerDoc": "",
+        "x": 210,
+        "y": 260,
+        "wires": [
+            [
+                "2e445a0a7e3c39ec"
+            ]
+        ]
+    },
+    {
+        "id": "2e445a0a7e3c39ec",
+        "type": "function",
+        "z": "3b43a8f9bf7f52ae",
+        "name": "Update Function",
+        "func": "var oldname = msg.payload.oldname;\nvar newname = msg.payload.newname;\n\nvar userid = msg.payload.userid;\n\n//msg.topic = \"UPDATE users (username, password) SET ('gautam','hi')\";\n//msg.topic = \"INSERT INTO users (username, password) VALUES ('\" + username + \"', '\" + password + \"')\";\n\nmsg.topic = \"UPDATE walls SET name='\" + newname +\"'  WHERE name = '\" + oldname + \"'AND userid='\" + userid + \"'\";\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 260,
+        "wires": [
+            [
+                "9501db77c6d0ca1a"
+            ]
+        ]
+    },
+    {
+        "id": "9501db77c6d0ca1a",
+        "type": "mysql",
+        "z": "3b43a8f9bf7f52ae",
+        "mydb": "c8d18af9033ef444",
+        "name": "",
+        "x": 590,
+        "y": 260,
+        "wires": [
+            [
+                "246292c882e8a87e"
+            ]
+        ]
+    },
+    {
+        "id": "246292c882e8a87e",
+        "type": "debug",
+        "z": "3b43a8f9bf7f52ae",
+        "name": "debug 16",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 740,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "18ec3f861c6f1d31",
+        "type": "http in",
+        "z": "3b43a8f9bf7f52ae",
+        "name": "",
+        "url": "/wallDelete",
+        "method": "post",
+        "upload": true,
+        "swaggerDoc": "",
+        "x": 200,
+        "y": 320,
+        "wires": [
+            [
+                "9d8497a23dfe4b4f"
+            ]
+        ]
+    },
+    {
+        "id": "9d8497a23dfe4b4f",
+        "type": "function",
+        "z": "3b43a8f9bf7f52ae",
+        "name": "Delete Function",
+        "func": "var name = msg.payload.name;\nvar userid=msg.payload.userid;\n//msg.topic = \"UPDATE users (username, password) SET ('gautam','hi')\";\n//msg.topic = \"INSERT INTO users (username, password) VALUES ('\" + username + \"', '\" + password + \"')\";\nmsg.topic = \"DELETE FROM walls WHERE name ='\" + name + \"'AND userid='\" + userid + \"' \";\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 320,
+        "wires": [
+            [
+                "1ec0fdffaeee7122"
+            ]
+        ]
+    },
+    {
+        "id": "1ec0fdffaeee7122",
+        "type": "mysql",
+        "z": "3b43a8f9bf7f52ae",
+        "mydb": "c8d18af9033ef444",
+        "name": "",
+        "x": 590,
+        "y": 320,
+        "wires": [
+            [
+                "c52a3d23248f330c"
+            ]
+        ]
+    },
+    {
+        "id": "c52a3d23248f330c",
+        "type": "debug",
+        "z": "3b43a8f9bf7f52ae",
+        "name": "debug 17",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 740,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "08820e03becef08b",
+        "type": "http response",
+        "z": "3b43a8f9bf7f52ae",
+        "name": "",
+        "statusCode": "",
+        "headers": {
+            "content-type": "application/json"
+        },
+        "x": 790,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "357c389d2ace35ca",
+        "type": "http in",
+        "z": "eacd39a59e5949df",
+        "name": "",
+        "url": "/userInsert",
+        "method": "post",
+        "upload": true,
+        "swaggerDoc": "",
+        "x": 220,
+        "y": 120,
+        "wires": [
+            [
+                "a296c709123e7ed6"
+            ]
+        ]
+    },
+    {
+        "id": "a296c709123e7ed6",
+        "type": "function",
+        "z": "eacd39a59e5949df",
+        "name": "Insert Function",
+        "func": "var username = msg.payload.username;\nvar password = msg.payload.password;\n\nmsg.topic = \"INSERT INTO users (username, password) VALUES ('\" + username + \"', '\" + password + \"')\";\n//msg.topic = \"INSERT INTO users (username, password) VALUES ('gautam','hi')\";\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 120,
+        "wires": [
+            [
+                "8d262f4bf9cb6103"
+            ]
+        ]
+    },
+    {
+        "id": "8d262f4bf9cb6103",
+        "type": "mysql",
+        "z": "eacd39a59e5949df",
+        "mydb": "c8d18af9033ef444",
+        "name": "",
+        "x": 610,
+        "y": 120,
+        "wires": [
+            [
+                "c071ac80e4c1ab26"
+            ]
+        ]
+    },
+    {
+        "id": "c071ac80e4c1ab26",
+        "type": "debug",
+        "z": "eacd39a59e5949df",
+        "name": "debug 18",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 760,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "8e4d95c0c5f96dca",
+        "type": "mysql",
+        "z": "eacd39a59e5949df",
+        "mydb": "c8d18af9033ef444",
+        "name": "",
+        "x": 610,
+        "y": 200,
+        "wires": [
+            [
+                "e8b9f0fb194e0f8b",
+                "64852f89b612b2f0"
+            ]
+        ]
+    },
+    {
+        "id": "3239676b22dd9c6b",
+        "type": "function",
+        "z": "eacd39a59e5949df",
+        "name": "Read Function",
+        "func": "var username = msg.payload.username;\nvar password = msg.payload.password;\n\nmsg.topic = \"SELECT DISTINCT  userid,username,password FROM users where username ='\" + username + \"'AND password ='\"+ password +\"'\";\n\n//msg.topic = \"SELECT userid FROM users where username ='\" + username + \"'\";\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 200,
+        "wires": [
+            [
+                "8e4d95c0c5f96dca"
+            ]
+        ]
+    },
+    {
+        "id": "64852f89b612b2f0",
+        "type": "debug",
+        "z": "eacd39a59e5949df",
+        "name": "debug 19",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "payload",
+        "statusType": "auto",
+        "x": 910,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "437e4a20cdd0154d",
+        "type": "http in",
+        "z": "eacd39a59e5949df",
+        "name": "",
+        "url": "/userRead",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 220,
+        "y": 200,
+        "wires": [
+            [
+                "3239676b22dd9c6b"
+            ]
+        ]
+    },
+    {
+        "id": "81a4b490cc00b00c",
+        "type": "http in",
+        "z": "eacd39a59e5949df",
+        "name": "",
+        "url": "/userUpdate",
+        "method": "post",
+        "upload": true,
+        "swaggerDoc": "",
+        "x": 230,
+        "y": 280,
+        "wires": [
+            [
+                "91e56f9c951552ed"
+            ]
+        ]
+    },
+    {
+        "id": "91e56f9c951552ed",
+        "type": "function",
+        "z": "eacd39a59e5949df",
+        "name": "Update Function",
+        "func": "var username = msg.payload.username;\nvar password = msg.payload.password;\n\nmsg.topic = \"UPDATE users (username, password) SET ('gautam','hi')\";\n//msg.topic = \"INSERT INTO users (username, password) VALUES ('\" + username + \"', '\" + password + \"')\";\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 280,
+        "wires": [
+            [
+                "f4a755159835364f"
+            ]
+        ]
+    },
+    {
+        "id": "f4a755159835364f",
+        "type": "mysql",
+        "z": "eacd39a59e5949df",
+        "mydb": "c8d18af9033ef444",
+        "name": "",
+        "x": 610,
+        "y": 280,
+        "wires": [
+            [
+                "6f45580b0ce82024"
+            ]
+        ]
+    },
+    {
+        "id": "6f45580b0ce82024",
+        "type": "debug",
+        "z": "eacd39a59e5949df",
+        "name": "debug 20",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 760,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "3ce18fc64b3663db",
+        "type": "http in",
+        "z": "eacd39a59e5949df",
+        "name": "",
+        "url": "/userDelete",
+        "method": "post",
+        "upload": true,
+        "swaggerDoc": "",
+        "x": 220,
+        "y": 360,
+        "wires": [
+            [
+                "f099b983c66b31f3"
+            ]
+        ]
+    },
+    {
+        "id": "f099b983c66b31f3",
+        "type": "function",
+        "z": "eacd39a59e5949df",
+        "name": "Delete Function",
+        "func": "var username = msg.payload.username;\n\nmsg.topic = \"DELETE FROM objects WHERE username ='\" + username + \"' \";\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 360,
+        "wires": [
+            [
+                "964d276a6a1d7727"
+            ]
+        ]
+    },
+    {
+        "id": "964d276a6a1d7727",
+        "type": "mysql",
+        "z": "eacd39a59e5949df",
+        "mydb": "c8d18af9033ef444",
+        "name": "",
+        "x": 610,
+        "y": 360,
+        "wires": [
+            [
+                "1e6bddc778aa710c"
+            ]
+        ]
+    },
+    {
+        "id": "1e6bddc778aa710c",
+        "type": "debug",
+        "z": "eacd39a59e5949df",
+        "name": "debug 21",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 760,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "e8b9f0fb194e0f8b",
+        "type": "http response",
+        "z": "eacd39a59e5949df",
+        "name": "",
+        "statusCode": "",
+        "headers": {
+            "content-type": "application/json"
+        },
+        "x": 890,
+        "y": 240,
+        "wires": []
+    }
+]
