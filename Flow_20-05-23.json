@@ -1,0 +1,4579 @@
+[
+    {
+        "id": "eacd39a59e5949df",
+        "type": "tab",
+        "label": "UserCRUD",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "3b43a8f9bf7f52ae",
+        "type": "tab",
+        "label": "WallsCRUD",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "dcb6eb2b3a2cefc1",
+        "type": "tab",
+        "label": "ObjectsCRUD",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "b58b93d119277eb3",
+        "type": "tab",
+        "label": "ApplConfigCRUD",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "02e369dabf186465",
+        "type": "tab",
+        "label": "FromSWBOld",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "f6784da6822cad8c",
+        "type": "tab",
+        "label": "ToSWBold",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "363bcc165f112c4a",
+        "type": "tab",
+        "label": "SWBCRUD",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "03d0cd951e4e306c",
+        "type": "tab",
+        "label": "Time Feature",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "57065eb5c9afd23b",
+        "type": "tab",
+        "label": "fromSWB",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "ab93e1e0465af7e2",
+        "type": "tab",
+        "label": "fromAPP",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "d6101c9cce6becf0",
+        "type": "tab",
+        "label": "LastWillTestament",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "b0b5df07122a59a0",
+        "type": "tab",
+        "label": "swbStatus",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "620073049bb61f46",
+        "type": "tab",
+        "label": "SFR_Config",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "d20cf60ee570fe7c",
+        "type": "tab",
+        "label": "Testing",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "456a43a0d0b46937",
+        "type": "tab",
+        "label": "FAN REGUALTOR CONFIG",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "f0fba540309a08b2",
+        "type": "tab",
+        "label": "MQTT.FX",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "3142eebd969dc321",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "142.93.212.127",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "c8d18af9033ef444",
+        "type": "MySQLdatabase",
+        "name": "",
+        "host": "142.93.212.127",
+        "port": "3306",
+        "db": "meta4home",
+        "tz": "",
+        "charset": "UTF8"
+    },
+    {
+        "id": "f1ac0db787203988",
+        "type": "MySQLdatabase",
+        "name": "",
+        "host": "142.93.212.127",
+        "port": "3306",
+        "db": "sample",
+        "tz": "",
+        "charset": "UTF8"
+    },
+    {
+        "id": "5b5a5c6d.583e7",
+        "type": "MySQLdatabase",
+        "name": "Database",
+        "host": "localhost",
+        "port": "3306",
+        "db": "test",
+        "tz": ""
+    },
+    {
+        "id": "357c389d2ace35ca",
+        "type": "http in",
+        "z": "eacd39a59e5949df",
+        "name": "",
+        "url": "/userInsert",
+        "method": "post",
+        "upload": true,
+        "swaggerDoc": "",
+        "x": 80,
+        "y": 120,
+        "wires": [
+            [
+                "bbe99194d00dc004"
+            ]
+        ]
+    },
+    {
+        "id": "a296c709123e7ed6",
+        "type": "function",
+        "z": "eacd39a59e5949df",
+        "name": "Insert Function",
+        "func": "var userid = msg.payload.userid;\nvar username = msg.payload.username;\nvar password = msg.payload.password;\n\nmsg.topic = \"INSERT INTO users (userid,username, password) VALUES ('\" + userid + \"', '\" + username + \"', '\" + password + \"')\";\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 120,
+        "wires": [
+            [
+                "8d262f4bf9cb6103"
+            ]
+        ]
+    },
+    {
+        "id": "8d262f4bf9cb6103",
+        "type": "mysql",
+        "z": "eacd39a59e5949df",
+        "mydb": "c8d18af9033ef444",
+        "name": "Users",
+        "x": 590,
+        "y": 120,
+        "wires": [
+            [
+                "c071ac80e4c1ab26",
+                "f40de3323cdbc583"
+            ]
+        ]
+    },
+    {
+        "id": "c071ac80e4c1ab26",
+        "type": "debug",
+        "z": "eacd39a59e5949df",
+        "name": "debug 18",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 740,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "8e4d95c0c5f96dca",
+        "type": "mysql",
+        "z": "eacd39a59e5949df",
+        "mydb": "c8d18af9033ef444",
+        "name": "Users",
+        "x": 590,
+        "y": 200,
+        "wires": [
+            [
+                "e8b9f0fb194e0f8b",
+                "64852f89b612b2f0"
+            ]
+        ]
+    },
+    {
+        "id": "3239676b22dd9c6b",
+        "type": "function",
+        "z": "eacd39a59e5949df",
+        "name": "Read Function",
+        "func": "var username = msg.payload.username;\nvar password = msg.payload.password;\n\nmsg.topic = \"SELECT DISTINCT  userid,username,password FROM users where username ='\" + username + \"'AND password ='\"+ password +\"'\";\n\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 200,
+        "wires": [
+            [
+                "8e4d95c0c5f96dca"
+            ]
+        ]
+    },
+    {
+        "id": "64852f89b612b2f0",
+        "type": "debug",
+        "z": "eacd39a59e5949df",
+        "name": "debug 19",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "payload",
+        "statusType": "auto",
+        "x": 770,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "437e4a20cdd0154d",
+        "type": "http in",
+        "z": "eacd39a59e5949df",
+        "name": "",
+        "url": "/userRead",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 220,
+        "y": 200,
+        "wires": [
+            [
+                "3239676b22dd9c6b"
+            ]
+        ]
+    },
+    {
+        "id": "81a4b490cc00b00c",
+        "type": "http in",
+        "z": "eacd39a59e5949df",
+        "name": "",
+        "url": "/userUpdate",
+        "method": "post",
+        "upload": true,
+        "swaggerDoc": "",
+        "x": 210,
+        "y": 300,
+        "wires": [
+            [
+                "91e56f9c951552ed"
+            ]
+        ]
+    },
+    {
+        "id": "91e56f9c951552ed",
+        "type": "function",
+        "z": "eacd39a59e5949df",
+        "name": "Update Function",
+        "func": "var username = msg.payload.username;\nvar password = msg.payload.password;\n\n//msg.topic = \"UPDATE users (username, password) SET ('gautam','hi')\";\n//msg.topic = \"INSERT INTO users (username, password) VALUES ('\" + username + \"', '\" + password + \"')\";\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 300,
+        "wires": [
+            [
+                "f4a755159835364f"
+            ]
+        ]
+    },
+    {
+        "id": "f4a755159835364f",
+        "type": "mysql",
+        "z": "eacd39a59e5949df",
+        "mydb": "c8d18af9033ef444",
+        "name": "Users",
+        "x": 590,
+        "y": 300,
+        "wires": [
+            [
+                "6f45580b0ce82024",
+                "5f287d18908a4469"
+            ]
+        ]
+    },
+    {
+        "id": "6f45580b0ce82024",
+        "type": "debug",
+        "z": "eacd39a59e5949df",
+        "name": "debug 20",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 760,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "3ce18fc64b3663db",
+        "type": "http in",
+        "z": "eacd39a59e5949df",
+        "name": "",
+        "url": "/userDelete",
+        "method": "post",
+        "upload": true,
+        "swaggerDoc": "",
+        "x": 200,
+        "y": 460,
+        "wires": [
+            [
+                "f099b983c66b31f3"
+            ]
+        ]
+    },
+    {
+        "id": "f099b983c66b31f3",
+        "type": "function",
+        "z": "eacd39a59e5949df",
+        "name": "Delete Function",
+        "func": "var username = msg.payload.username;\n\n//msg.topic = \"DELETE FROM users WHERE username ='\" + username + \"' \";\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 460,
+        "wires": [
+            [
+                "964d276a6a1d7727"
+            ]
+        ]
+    },
+    {
+        "id": "964d276a6a1d7727",
+        "type": "mysql",
+        "z": "eacd39a59e5949df",
+        "mydb": "c8d18af9033ef444",
+        "name": "Users",
+        "x": 570,
+        "y": 460,
+        "wires": [
+            [
+                "1e6bddc778aa710c",
+                "19179f1126578861"
+            ]
+        ]
+    },
+    {
+        "id": "1e6bddc778aa710c",
+        "type": "debug",
+        "z": "eacd39a59e5949df",
+        "name": "debug 21",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 740,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "e8b9f0fb194e0f8b",
+        "type": "http response",
+        "z": "eacd39a59e5949df",
+        "name": "UserData",
+        "statusCode": "",
+        "headers": {
+            "content-type": "application/json"
+        },
+        "x": 800,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "7c682e715213c8d7",
+        "type": "http response",
+        "z": "eacd39a59e5949df",
+        "name": "",
+        "statusCode": "",
+        "headers": {
+            "content-type": "application/json"
+        },
+        "x": 890,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "f40de3323cdbc583",
+        "type": "function",
+        "z": "eacd39a59e5949df",
+        "name": "function 7",
+        "func": "// Set a new value to msg.payload\nmsg.payload = \"200:OK|| Inserted\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 780,
+        "y": 120,
+        "wires": [
+            [
+                "7c682e715213c8d7"
+            ]
+        ]
+    },
+    {
+        "id": "905326f879677dde",
+        "type": "http response",
+        "z": "eacd39a59e5949df",
+        "name": "",
+        "statusCode": "",
+        "headers": {
+            "content-type": "application/json"
+        },
+        "x": 870,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "5f287d18908a4469",
+        "type": "function",
+        "z": "eacd39a59e5949df",
+        "name": "function 8",
+        "func": "// Set a new value to msg.payload\nmsg.payload = \"200:OK|| Updated\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 360,
+        "wires": [
+            [
+                "905326f879677dde"
+            ]
+        ]
+    },
+    {
+        "id": "aad893e52b303ca5",
+        "type": "http response",
+        "z": "eacd39a59e5949df",
+        "name": "",
+        "statusCode": "",
+        "headers": {
+            "content-type": "application/json"
+        },
+        "x": 850,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "19179f1126578861",
+        "type": "function",
+        "z": "eacd39a59e5949df",
+        "name": "function 9",
+        "func": "// Set a new value to msg.payload\nmsg.payload = \"200:OK|| Deleted\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 740,
+        "y": 540,
+        "wires": [
+            [
+                "aad893e52b303ca5"
+            ]
+        ]
+    },
+    {
+        "id": "bbe99194d00dc004",
+        "type": "bcrypt",
+        "z": "eacd39a59e5949df",
+        "name": "",
+        "action": "encrypt",
+        "field": "payload",
+        "hash": "payload",
+        "target": "payload.userid",
+        "assignment": "assign",
+        "match": "match",
+        "outputs": 1,
+        "rounds": "1",
+        "x": 250,
+        "y": 120,
+        "wires": [
+            [
+                "a296c709123e7ed6"
+            ]
+        ]
+    },
+    {
+        "id": "02f849ac92992629",
+        "type": "http in",
+        "z": "3b43a8f9bf7f52ae",
+        "name": "",
+        "url": "/wallInsert",
+        "method": "post",
+        "upload": true,
+        "swaggerDoc": "",
+        "x": 200,
+        "y": 80,
+        "wires": [
+            [
+                "8d26ab2f5310c3f0"
+            ]
+        ]
+    },
+    {
+        "id": "8d26ab2f5310c3f0",
+        "type": "function",
+        "z": "3b43a8f9bf7f52ae",
+        "name": "Insert Function",
+        "func": "var name = msg.payload.name;\nvar v1 = msg.payload.v1;\nvar v2 = msg.payload.v2;\nvar v3 = msg.payload.v3;\nvar v4 = msg.payload.v4;\nvar inColor = msg.payload.inColor;\nvar outColor = msg.payload.outColor;\nvar tileColor = msg.payload.tileColor;\nvar userid = msg.payload.userid;\n\n//msg.topic = \"INSERT INTO users (username, password) VALUES ('\" + username + \"', '\" + password + \"')\";\n//msg.topic = \"INSERT INTO users (username, password) VALUES ('gautam','hi')\";\n\nmsg.topic = \"INSERT INTO walls(name,v1,v2,v3,v4,inColor,outColor,tileColor,userid) VALUES ('\" + name + \"','\" + v1 + \"','\" + v2 + \"','\" + v3 + \"','\" + v4 + \"','\" + inColor + \"','\" + outColor + \"','\" + tileColor + \"','\" + userid + \"')\";\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 80,
+        "wires": [
+            [
+                "b01cfb3890468da6"
+            ]
+        ]
+    },
+    {
+        "id": "b01cfb3890468da6",
+        "type": "mysql",
+        "z": "3b43a8f9bf7f52ae",
+        "mydb": "c8d18af9033ef444",
+        "name": "walls",
+        "x": 570,
+        "y": 80,
+        "wires": [
+            [
+                "df63c03aef32e011",
+                "d8b9acf1246c72dd"
+            ]
+        ]
+    },
+    {
+        "id": "df63c03aef32e011",
+        "type": "debug",
+        "z": "3b43a8f9bf7f52ae",
+        "name": "debug 14",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 740,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "fc45a4ac116a1eb2",
+        "type": "mysql",
+        "z": "3b43a8f9bf7f52ae",
+        "mydb": "c8d18af9033ef444",
+        "name": "walls",
+        "x": 570,
+        "y": 140,
+        "wires": [
+            [
+                "c8fa0b0ce026d36b",
+                "08820e03becef08b"
+            ]
+        ]
+    },
+    {
+        "id": "372931c5d36b39bb",
+        "type": "function",
+        "z": "3b43a8f9bf7f52ae",
+        "name": "Read Function",
+        "func": "var userid=msg.payload.userid;\nmsg.topic = \"SELECT * FROM walls where userid='\"+userid+\"'\";\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 140,
+        "wires": [
+            [
+                "fc45a4ac116a1eb2"
+            ]
+        ]
+    },
+    {
+        "id": "c8fa0b0ce026d36b",
+        "type": "debug",
+        "z": "3b43a8f9bf7f52ae",
+        "name": "debug 15",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "payload",
+        "statusType": "auto",
+        "x": 790,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "4b67ab1e333537d4",
+        "type": "http in",
+        "z": "3b43a8f9bf7f52ae",
+        "name": "",
+        "url": "/wallread",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 200,
+        "y": 140,
+        "wires": [
+            [
+                "372931c5d36b39bb"
+            ]
+        ]
+    },
+    {
+        "id": "3951b39e6bee2ffb",
+        "type": "http in",
+        "z": "3b43a8f9bf7f52ae",
+        "name": "",
+        "url": "/wallUpdate",
+        "method": "post",
+        "upload": true,
+        "swaggerDoc": "",
+        "x": 210,
+        "y": 260,
+        "wires": [
+            [
+                "2e445a0a7e3c39ec",
+                "ba0b96ac8371751b"
+            ]
+        ]
+    },
+    {
+        "id": "2e445a0a7e3c39ec",
+        "type": "function",
+        "z": "3b43a8f9bf7f52ae",
+        "name": "Update Function",
+        "func": "var oldname = msg.payload.oldname;\nvar newname = msg.payload.newname;\nvar userid = msg.payload.userid;\n\nmsg.topic = \"UPDATE walls SET name='\" + newname +\"'  WHERE name = '\" + oldname + \"'AND userid='\" + userid + \"'\";\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 260,
+        "wires": [
+            [
+                "9501db77c6d0ca1a"
+            ]
+        ]
+    },
+    {
+        "id": "9501db77c6d0ca1a",
+        "type": "mysql",
+        "z": "3b43a8f9bf7f52ae",
+        "mydb": "c8d18af9033ef444",
+        "name": "walls",
+        "x": 590,
+        "y": 260,
+        "wires": [
+            [
+                "246292c882e8a87e",
+                "c893bf8ba22a4fda"
+            ]
+        ]
+    },
+    {
+        "id": "246292c882e8a87e",
+        "type": "debug",
+        "z": "3b43a8f9bf7f52ae",
+        "name": "debug 16",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 740,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "18ec3f861c6f1d31",
+        "type": "http in",
+        "z": "3b43a8f9bf7f52ae",
+        "name": "",
+        "url": "/wallDelete",
+        "method": "post",
+        "upload": true,
+        "swaggerDoc": "",
+        "x": 200,
+        "y": 420,
+        "wires": [
+            [
+                "9d8497a23dfe4b4f",
+                "2e04745b26e86cdb"
+            ]
+        ]
+    },
+    {
+        "id": "9d8497a23dfe4b4f",
+        "type": "function",
+        "z": "3b43a8f9bf7f52ae",
+        "name": "Delete Function",
+        "func": "var name = msg.payload.name;\nvar userid=msg.payload.userid;\nmsg.topic = \"DELETE FROM walls WHERE name ='\" + name + \"'AND userid='\" + userid + \"' \";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 420,
+        "wires": [
+            [
+                "1ec0fdffaeee7122"
+            ]
+        ]
+    },
+    {
+        "id": "1ec0fdffaeee7122",
+        "type": "mysql",
+        "z": "3b43a8f9bf7f52ae",
+        "mydb": "c8d18af9033ef444",
+        "name": "walls",
+        "x": 570,
+        "y": 420,
+        "wires": [
+            [
+                "c52a3d23248f330c",
+                "33adbaff2c9d5114"
+            ]
+        ]
+    },
+    {
+        "id": "c52a3d23248f330c",
+        "type": "debug",
+        "z": "3b43a8f9bf7f52ae",
+        "name": "debug 17",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 740,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "08820e03becef08b",
+        "type": "http response",
+        "z": "3b43a8f9bf7f52ae",
+        "name": "",
+        "statusCode": "",
+        "headers": {
+            "content-type": "application/json"
+        },
+        "x": 790,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "a8b99d25f76ba514",
+        "type": "http response",
+        "z": "3b43a8f9bf7f52ae",
+        "name": "",
+        "statusCode": "",
+        "headers": {
+            "content-type": "application/json"
+        },
+        "x": 1030,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "d8b9acf1246c72dd",
+        "type": "function",
+        "z": "3b43a8f9bf7f52ae",
+        "name": "function 10",
+        "func": "// Set a new value to msg.payload\nmsg.payload = \"200:OK|| Inserted\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 920,
+        "y": 100,
+        "wires": [
+            [
+                "a8b99d25f76ba514"
+            ]
+        ]
+    },
+    {
+        "id": "789ae38e15823c8b",
+        "type": "http response",
+        "z": "3b43a8f9bf7f52ae",
+        "name": "",
+        "statusCode": "",
+        "headers": {
+            "content-type": "application/json"
+        },
+        "x": 1010,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "c893bf8ba22a4fda",
+        "type": "function",
+        "z": "3b43a8f9bf7f52ae",
+        "name": "function 11",
+        "func": "// Set a new value to msg.payload\nmsg.payload = \"200:OK|| Updated\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 900,
+        "y": 320,
+        "wires": [
+            [
+                "789ae38e15823c8b"
+            ]
+        ]
+    },
+    {
+        "id": "51fe0f7d1a06bfce",
+        "type": "http response",
+        "z": "3b43a8f9bf7f52ae",
+        "name": "",
+        "statusCode": "",
+        "headers": {
+            "content-type": "application/json"
+        },
+        "x": 870,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "33adbaff2c9d5114",
+        "type": "function",
+        "z": "3b43a8f9bf7f52ae",
+        "name": "function 12",
+        "func": "// Set a new value to msg.payload\nmsg.payload = \"200:OK|| Deleted\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 500,
+        "wires": [
+            [
+                "51fe0f7d1a06bfce"
+            ]
+        ]
+    },
+    {
+        "id": "2e04745b26e86cdb",
+        "type": "function",
+        "z": "3b43a8f9bf7f52ae",
+        "name": "Delete from objects table",
+        "func": "var name = msg.payload.name;\nvar userid = msg.payload.userid;\nmsg.topic = \"DELETE FROM objects WHERE roomName ='\" + name + \"'AND userid='\" + userid + \"' \";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 500,
+        "wires": [
+            [
+                "1ec0fdffaeee7122"
+            ]
+        ]
+    },
+    {
+        "id": "ba0b96ac8371751b",
+        "type": "function",
+        "z": "3b43a8f9bf7f52ae",
+        "name": "Update from object table",
+        "func": "var oldname = msg.payload.oldname;\nvar newname = msg.payload.newname;\nvar userid = msg.payload.userid;\n\nmsg.topic = \"UPDATE objects SET roomName='\" + newname +\"'  WHERE roomName = '\" + oldname + \"'AND userid='\" + userid + \"'\";\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 410,
+        "y": 340,
+        "wires": [
+            [
+                "770e289427d386f1"
+            ]
+        ]
+    },
+    {
+        "id": "770e289427d386f1",
+        "type": "mysql",
+        "z": "3b43a8f9bf7f52ae",
+        "mydb": "c8d18af9033ef444",
+        "name": "walls",
+        "x": 610,
+        "y": 340,
+        "wires": [
+            [
+                "246292c882e8a87e"
+            ]
+        ]
+    },
+    {
+        "id": "02c5c57cedd7fee4",
+        "type": "http in",
+        "z": "dcb6eb2b3a2cefc1",
+        "name": "",
+        "url": "/objectInsert",
+        "method": "post",
+        "upload": true,
+        "swaggerDoc": "",
+        "x": 130,
+        "y": 120,
+        "wires": [
+            [
+                "33158d8dab0a4664",
+                "21d025f11780272e"
+            ]
+        ]
+    },
+    {
+        "id": "33158d8dab0a4664",
+        "type": "function",
+        "z": "dcb6eb2b3a2cefc1",
+        "name": "Insert Function",
+        "func": "var name = msg.payload.name;\nvar baseType = msg.payload.baseType;\nvar position = msg.payload.position;\nvar rotation = msg.payload.rotation;\nvar roomName = msg.payload.roomName;\nvar floor = msg.payload.floor;\nvar tag = msg.payload.tag;\nvar userid = msg.payload.userid;\n\nmsg.topic = \"INSERT INTO objects(name,baseType,position,rotation,roomName,floor,tag,userid) VALUES ('\" + name + \"','\" + baseType + \"','\" + position + \"','\" + rotation + \"','\" + roomName + \"','\" + floor + \"','\" + tag + \"','\" + userid + \"')\";\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 120,
+        "wires": [
+            [
+                "214987fb653487ad"
+            ]
+        ]
+    },
+    {
+        "id": "214987fb653487ad",
+        "type": "mysql",
+        "z": "dcb6eb2b3a2cefc1",
+        "mydb": "c8d18af9033ef444",
+        "name": "objects",
+        "x": 520,
+        "y": 120,
+        "wires": [
+            [
+                "0547237a185b373b",
+                "b83c192774633880"
+            ]
+        ]
+    },
+    {
+        "id": "0547237a185b373b",
+        "type": "debug",
+        "z": "dcb6eb2b3a2cefc1",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 660,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "bbac68c32c8ed629",
+        "type": "mysql",
+        "z": "dcb6eb2b3a2cefc1",
+        "mydb": "c8d18af9033ef444",
+        "name": "objects",
+        "x": 500,
+        "y": 200,
+        "wires": [
+            [
+                "04ba2c9fbeb45a9d",
+                "a90e48c35157e1e0"
+            ]
+        ]
+    },
+    {
+        "id": "78e27182ef8914d1",
+        "type": "function",
+        "z": "dcb6eb2b3a2cefc1",
+        "name": "Read Function",
+        "func": "var userid=msg.payload.userid;\n\nmsg.topic = \"SELECT * FROM objects WHERE userid='\"+userid+\"'\";\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 200,
+        "wires": [
+            [
+                "bbac68c32c8ed629"
+            ]
+        ]
+    },
+    {
+        "id": "04ba2c9fbeb45a9d",
+        "type": "debug",
+        "z": "dcb6eb2b3a2cefc1",
+        "name": "debug 6",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "payload",
+        "statusType": "auto",
+        "x": 710,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "62e9bc01ee2e2c6e",
+        "type": "http in",
+        "z": "dcb6eb2b3a2cefc1",
+        "name": "",
+        "url": "/objectRead",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 130,
+        "y": 200,
+        "wires": [
+            [
+                "78e27182ef8914d1"
+            ]
+        ]
+    },
+    {
+        "id": "71bdb5a59523b359",
+        "type": "http in",
+        "z": "dcb6eb2b3a2cefc1",
+        "name": "",
+        "url": "/objectUpdate",
+        "method": "post",
+        "upload": true,
+        "swaggerDoc": "",
+        "x": 130,
+        "y": 280,
+        "wires": [
+            [
+                "f2dd59edc58e6e95"
+            ]
+        ]
+    },
+    {
+        "id": "f2dd59edc58e6e95",
+        "type": "function",
+        "z": "dcb6eb2b3a2cefc1",
+        "name": "Update Function",
+        "func": "var name = msg.payload.name;\nvar baseType = msg.payload.baseType;\nvar position = msg.payload.position;\nvar rotation = msg.payload.rotation;\nvar roomName = msg.payload.roomName;\nvar floor = msg.payload.floor;\nvar tag = msg.payload.tag;\nvar userid=msg.payload.userid;\n\n//msg.topic = \"UPDATE users (username, password) SET ('gautam','hi')\";\n//msg.topic = \"INSERT INTO users (username, password) VALUES ('\" + username + \"', '\" + password + \"')\";\n\nmsg.topic = \"UPDATE objects SET position='\" + position + \"' ,rotation= '\" + rotation + \"', roomName= '\" + roomName + \"',floor= '\" + floor + \"' ,tag= '\" + tag + \"' WHERE name = '\" + name + \"'AND userid='\" + userid + \"'\";\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 280,
+        "wires": [
+            [
+                "0a043930f980f9c9"
+            ]
+        ]
+    },
+    {
+        "id": "0a043930f980f9c9",
+        "type": "mysql",
+        "z": "dcb6eb2b3a2cefc1",
+        "mydb": "c8d18af9033ef444",
+        "name": "objects",
+        "x": 500,
+        "y": 280,
+        "wires": [
+            [
+                "2368d79c177da0ea",
+                "78d50cf15d8e7b24"
+            ]
+        ]
+    },
+    {
+        "id": "2368d79c177da0ea",
+        "type": "debug",
+        "z": "dcb6eb2b3a2cefc1",
+        "name": "debug 7",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 660,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "dbb559b4f356016b",
+        "type": "http in",
+        "z": "dcb6eb2b3a2cefc1",
+        "name": "",
+        "url": "/objectDelete",
+        "method": "post",
+        "upload": true,
+        "swaggerDoc": "",
+        "x": 130,
+        "y": 360,
+        "wires": [
+            [
+                "e9bfd46e476da83b"
+            ]
+        ]
+    },
+    {
+        "id": "e9bfd46e476da83b",
+        "type": "function",
+        "z": "dcb6eb2b3a2cefc1",
+        "name": "Delete Function",
+        "func": "var name = msg.payload.name;\nvar userid=msg.payload.userid;\n\nmsg.topic = \"DELETE FROM objects WHERE name ='\" + name + \"'AND userid='\" + userid + \"' \";\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 360,
+        "wires": [
+            [
+                "beb8d1df2d7762e2"
+            ]
+        ]
+    },
+    {
+        "id": "beb8d1df2d7762e2",
+        "type": "mysql",
+        "z": "dcb6eb2b3a2cefc1",
+        "mydb": "c8d18af9033ef444",
+        "name": "objects",
+        "x": 500,
+        "y": 360,
+        "wires": [
+            [
+                "0920d0f8b9ee6ab8",
+                "40bc29f452a09da0"
+            ]
+        ]
+    },
+    {
+        "id": "0920d0f8b9ee6ab8",
+        "type": "debug",
+        "z": "dcb6eb2b3a2cefc1",
+        "name": "debug 8",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 660,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "a90e48c35157e1e0",
+        "type": "http response",
+        "z": "dcb6eb2b3a2cefc1",
+        "name": "",
+        "statusCode": "",
+        "headers": {
+            "content-type": "application/json"
+        },
+        "x": 750,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "e03ca187982d935b",
+        "type": "http response",
+        "z": "dcb6eb2b3a2cefc1",
+        "name": "",
+        "statusCode": "",
+        "headers": {
+            "content-type": "application/json"
+        },
+        "x": 1010,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "b83c192774633880",
+        "type": "function",
+        "z": "dcb6eb2b3a2cefc1",
+        "name": "function 13",
+        "func": "// Set a new value to msg.payload\nmsg.payload = \"200:OK|| Inserted\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 900,
+        "y": 160,
+        "wires": [
+            [
+                "e03ca187982d935b"
+            ]
+        ]
+    },
+    {
+        "id": "13e285831cc18b35",
+        "type": "http response",
+        "z": "dcb6eb2b3a2cefc1",
+        "name": "",
+        "statusCode": "",
+        "headers": {
+            "content-type": "application/json"
+        },
+        "x": 1010,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "78d50cf15d8e7b24",
+        "type": "function",
+        "z": "dcb6eb2b3a2cefc1",
+        "name": "function 14",
+        "func": "// Set a new value to msg.payload\nmsg.payload = \"200:OK|| Updated\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 900,
+        "y": 320,
+        "wires": [
+            [
+                "13e285831cc18b35"
+            ]
+        ]
+    },
+    {
+        "id": "06c8e81cf3f59531",
+        "type": "http response",
+        "z": "dcb6eb2b3a2cefc1",
+        "name": "",
+        "statusCode": "",
+        "headers": {
+            "content-type": "application/json"
+        },
+        "x": 990,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "40bc29f452a09da0",
+        "type": "function",
+        "z": "dcb6eb2b3a2cefc1",
+        "name": "function 15",
+        "func": "// Set a new value to msg.payload\nmsg.payload = \"200:OK|| Deleted\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 880,
+        "y": 420,
+        "wires": [
+            [
+                "06c8e81cf3f59531"
+            ]
+        ]
+    },
+    {
+        "id": "21d025f11780272e",
+        "type": "debug",
+        "z": "dcb6eb2b3a2cefc1",
+        "name": "debug 62",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 320,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "6f9e8ee238921434",
+        "type": "function",
+        "z": "dcb6eb2b3a2cefc1",
+        "name": "Delete In ApplConfig",
+        "func": "var name = msg.payload.name;\nvar userid = msg.payload.userid;\n\nvar query = \"DELETE FROM applconfig WHERE applName = '\" + name+\"' AND userid = '\"+userid+\"'\";\n\nmsg.topic = query;\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "89e021ce6e802b89",
+        "type": "function",
+        "z": "dcb6eb2b3a2cefc1",
+        "name": "Delete In FRConfig",
+        "func": "var name = msg.payload.name;\nvar userid = msg.payload.userid;\n\nvar query = \"DELETE FROM frconfig WHERE applName = '\" + name+\"' AND userid = '\"+userid+\"'\";\n\nmsg.topic = query;\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6a0ee744c30525b1",
+        "type": "http in",
+        "z": "b58b93d119277eb3",
+        "name": "",
+        "url": "/applconfigInsert",
+        "method": "post",
+        "upload": true,
+        "swaggerDoc": "",
+        "x": 260,
+        "y": 140,
+        "wires": [
+            [
+                "6c93934d453322a2"
+            ]
+        ]
+    },
+    {
+        "id": "6c93934d453322a2",
+        "type": "function",
+        "z": "b58b93d119277eb3",
+        "name": "Insert Function",
+        "func": "var applName = msg.payload.applName;\nvar swbid = msg.payload.swbid;\nvar swno = msg.payload.swno;\nvar userid = msg.payload.userid;\n\nvar query = \"INSERT INTO applconfig (applName, swbid, swno, userid) VALUES ('\"+applName+\"', '\"+swbid+\"', '\"+swno+\"', '\"+userid+\"')\";\n\nmsg.topic = query;\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 140,
+        "wires": [
+            [
+                "4b9b9d2b5b08aaf0"
+            ]
+        ]
+    },
+    {
+        "id": "4b9b9d2b5b08aaf0",
+        "type": "mysql",
+        "z": "b58b93d119277eb3",
+        "mydb": "c8d18af9033ef444",
+        "name": "applconfig",
+        "x": 670,
+        "y": 140,
+        "wires": [
+            [
+                "3654158219d921c7",
+                "97b353b3e0d5b3dd"
+            ]
+        ]
+    },
+    {
+        "id": "3654158219d921c7",
+        "type": "debug",
+        "z": "b58b93d119277eb3",
+        "name": "debug 26",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 920,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "a8061a63c36d22f0",
+        "type": "mysql",
+        "z": "b58b93d119277eb3",
+        "mydb": "c8d18af9033ef444",
+        "name": "applconfig",
+        "x": 670,
+        "y": 220,
+        "wires": [
+            [
+                "155df4787741d4c1",
+                "17fce6f03ece2ab1"
+            ]
+        ]
+    },
+    {
+        "id": "400ea6c7f442a57e",
+        "type": "function",
+        "z": "b58b93d119277eb3",
+        "name": "Read Function",
+        "func": "var applName = msg.payload.applName;\nvar userid = msg.payload.userid;\n\nvar query = \"SELECT * FROM applconfig WHERE userid = '\"+userid+\"'\";\n\nmsg.topic = query;\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 220,
+        "wires": [
+            [
+                "a8061a63c36d22f0"
+            ]
+        ]
+    },
+    {
+        "id": "155df4787741d4c1",
+        "type": "debug",
+        "z": "b58b93d119277eb3",
+        "name": "debug 27",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "payload",
+        "statusType": "auto",
+        "x": 870,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "53a7b386515403f5",
+        "type": "http in",
+        "z": "b58b93d119277eb3",
+        "name": "",
+        "url": "/applconfigRead",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 260,
+        "y": 220,
+        "wires": [
+            [
+                "400ea6c7f442a57e"
+            ]
+        ]
+    },
+    {
+        "id": "a936a091f9426753",
+        "type": "http in",
+        "z": "b58b93d119277eb3",
+        "name": "",
+        "url": "/applconfigUpdate",
+        "method": "post",
+        "upload": true,
+        "swaggerDoc": "",
+        "x": 250,
+        "y": 300,
+        "wires": [
+            [
+                "fe61095538e3fcfe"
+            ]
+        ]
+    },
+    {
+        "id": "fe61095538e3fcfe",
+        "type": "function",
+        "z": "b58b93d119277eb3",
+        "name": "Update Function",
+        "func": "var swbid = msg.payload.swbid;\nvar swno = msg.payload.swno;\nvar applName = msg.payload.applName;\nvar userid = msg.payload.userid;\n\nvar query = \"UPDATE applconfig SET swbid = '\" + swbid + \"', swno = '\" + swno + \"',applName = '\" + applName +\"'  WHERE userid = '\"+userid+\"'\";\n\nmsg.topic = query;\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 300,
+        "wires": [
+            [
+                "0739205d43fcb53d"
+            ]
+        ]
+    },
+    {
+        "id": "0739205d43fcb53d",
+        "type": "mysql",
+        "z": "b58b93d119277eb3",
+        "mydb": "c8d18af9033ef444",
+        "name": "applconfig",
+        "x": 670,
+        "y": 300,
+        "wires": [
+            [
+                "67f2f8087896fc74",
+                "5b2ee807e0070a84"
+            ]
+        ]
+    },
+    {
+        "id": "67f2f8087896fc74",
+        "type": "debug",
+        "z": "b58b93d119277eb3",
+        "name": "debug 28",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 820,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "6dd334895b19f8ec",
+        "type": "http in",
+        "z": "b58b93d119277eb3",
+        "name": "",
+        "url": "/applconfigDelete",
+        "method": "post",
+        "upload": true,
+        "swaggerDoc": "",
+        "x": 260,
+        "y": 380,
+        "wires": [
+            [
+                "2531fcad658711d9"
+            ]
+        ]
+    },
+    {
+        "id": "2531fcad658711d9",
+        "type": "function",
+        "z": "b58b93d119277eb3",
+        "name": "Delete Function",
+        "func": "var applName = msg.payload.applName;\nvar userid = msg.payload.userid;\n\nvar query = \"DELETE FROM applconfig WHERE applName = '\"+applName+\"' AND userid = '\"+userid+\"'\";\n\nmsg.topic = query;\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 380,
+        "wires": [
+            [
+                "d4b88d9e7c42d2a1"
+            ]
+        ]
+    },
+    {
+        "id": "d4b88d9e7c42d2a1",
+        "type": "mysql",
+        "z": "b58b93d119277eb3",
+        "mydb": "c8d18af9033ef444",
+        "name": "applconfig",
+        "x": 670,
+        "y": 380,
+        "wires": [
+            [
+                "c05b39e6b6f834bc",
+                "04404a7509a487d3"
+            ]
+        ]
+    },
+    {
+        "id": "c05b39e6b6f834bc",
+        "type": "debug",
+        "z": "b58b93d119277eb3",
+        "name": "debug 29",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 860,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "17fce6f03ece2ab1",
+        "type": "http response",
+        "z": "b58b93d119277eb3",
+        "name": "",
+        "statusCode": "",
+        "headers": {
+            "content-type": "application/json"
+        },
+        "x": 850,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "1ef71515abc53fc6",
+        "type": "http response",
+        "z": "b58b93d119277eb3",
+        "name": "",
+        "statusCode": "",
+        "headers": {
+            "content-type": "application/json"
+        },
+        "x": 1150,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "97b353b3e0d5b3dd",
+        "type": "function",
+        "z": "b58b93d119277eb3",
+        "name": "function 16",
+        "func": "// Set a new value to msg.payload\nmsg.payload = \"200:OK|| Inserted\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1040,
+        "y": 180,
+        "wires": [
+            [
+                "1ef71515abc53fc6"
+            ]
+        ]
+    },
+    {
+        "id": "b94b5d771e24bf70",
+        "type": "http response",
+        "z": "b58b93d119277eb3",
+        "name": "",
+        "statusCode": "",
+        "headers": {
+            "content-type": "application/json"
+        },
+        "x": 1130,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "5b2ee807e0070a84",
+        "type": "function",
+        "z": "b58b93d119277eb3",
+        "name": "function 17",
+        "func": "// Set a new value to msg.payload\nmsg.payload = \"200:OK|| Updated\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1020,
+        "y": 340,
+        "wires": [
+            [
+                "b94b5d771e24bf70"
+            ]
+        ]
+    },
+    {
+        "id": "e9f97de1579836be",
+        "type": "http response",
+        "z": "b58b93d119277eb3",
+        "name": "",
+        "statusCode": "",
+        "headers": {
+            "content-type": "application/json"
+        },
+        "x": 1130,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "04404a7509a487d3",
+        "type": "function",
+        "z": "b58b93d119277eb3",
+        "name": "function 18",
+        "func": "// Set a new value to msg.payload\nmsg.payload = \"200:OK|| Deleted\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1020,
+        "y": 440,
+        "wires": [
+            [
+                "e9f97de1579836be"
+            ]
+        ]
+    },
+    {
+        "id": "7006897727ad1ce7",
+        "type": "http in",
+        "z": "b58b93d119277eb3",
+        "name": "",
+        "url": "/applconfigWrite",
+        "method": "post",
+        "upload": true,
+        "swaggerDoc": "",
+        "x": 240,
+        "y": 600,
+        "wires": [
+            [
+                "91b0b31329d7698f"
+            ]
+        ]
+    },
+    {
+        "id": "91b0b31329d7698f",
+        "type": "function",
+        "z": "b58b93d119277eb3",
+        "name": "Insert/Update Function",
+        "func": "var applName = msg.payload.applName;\nvar swbid = msg.payload.swbid;\nvar swno = msg.payload.swno;\nvar userid = msg.payload.userid;\n\nvar query = \"INSERT INTO applconfig (applName, swbid, swno, userid) VALUES ('\" + applName + \"', '\" + swbid + \"', '\" + swno + \"', '\" + userid + \"')ON DUPLICATE KEY UPDATE swbid = '\" + swbid + \"', swno = '\" + swno + \"'\";\n\nmsg.topic = query;\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 600,
+        "wires": [
+            [
+                "617c02c3ed8188c8"
+            ]
+        ]
+    },
+    {
+        "id": "617c02c3ed8188c8",
+        "type": "mysql",
+        "z": "b58b93d119277eb3",
+        "mydb": "c8d18af9033ef444",
+        "name": "applconfig",
+        "x": 650,
+        "y": 600,
+        "wires": [
+            [
+                "29a8d86ab2f47341",
+                "a678753d13891859"
+            ]
+        ]
+    },
+    {
+        "id": "29a8d86ab2f47341",
+        "type": "debug",
+        "z": "b58b93d119277eb3",
+        "name": "debug 60",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 900,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "c0f59990c8d69b71",
+        "type": "http response",
+        "z": "b58b93d119277eb3",
+        "name": "",
+        "statusCode": "",
+        "headers": {
+            "content-type": "application/json"
+        },
+        "x": 1130,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "a678753d13891859",
+        "type": "function",
+        "z": "b58b93d119277eb3",
+        "name": "function 23",
+        "func": "// Set a new value to msg.payload\nmsg.payload = \"200:OK|| Inserted\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1020,
+        "y": 640,
+        "wires": [
+            [
+                "c0f59990c8d69b71"
+            ]
+        ]
+    },
+    {
+        "id": "bd6b660672fabc1f",
+        "type": "inject",
+        "z": "02e369dabf186465",
+        "name": "FromSWBMsg",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"username\":\"kiran\",\"swbID\":\"AB:CD:EF:GH\",\"swno\":1,\"state\":1}",
+        "payloadType": "json",
+        "x": 220,
+        "y": 140,
+        "wires": [
+            [
+                "513cbbe25505aabe"
+            ]
+        ]
+    },
+    {
+        "id": "dda1a05082080b9f",
+        "type": "mqtt out",
+        "z": "02e369dabf186465",
+        "name": "",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "3142eebd969dc321",
+        "x": 590,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "513cbbe25505aabe",
+        "type": "function",
+        "z": "02e369dabf186465",
+        "name": "pre processing",
+        "func": "var topic = \"meta4home/\" +\"FromSWB/\"+ msg.payload.username + \"/\" + msg.payload.swbID ;\nmsg.topic = topic;\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 140,
+        "wires": [
+            [
+                "437812c693c61f75",
+                "dda1a05082080b9f"
+            ]
+        ]
+    },
+    {
+        "id": "686c68ee6e20be55",
+        "type": "mqtt in",
+        "z": "02e369dabf186465",
+        "name": "",
+        "topic": "meta4home/FromSWB/#",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "3142eebd969dc321",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 270,
+        "y": 320,
+        "wires": [
+            [
+                "881009f48b411100",
+                "927db0d9bea48380"
+            ]
+        ]
+    },
+    {
+        "id": "437812c693c61f75",
+        "type": "debug",
+        "z": "02e369dabf186465",
+        "name": "debug 11",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 560,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "881009f48b411100",
+        "type": "function",
+        "z": "02e369dabf186465",
+        "name": "Insert Function",
+        "func": "var username = msg.payload.username;\nvar swbID = msg.payload.swbID;\nvar swno = msg.payload.swno;\nvar state = msg.payload.state;\n\n//msg.topic = \"INSERT INTO users (username, password) VALUES ('\" + username + \"', '\" + password + \"')\";\n//msg.topic = \"INSERT INTO users (username, password) VALUES ('gautam','hi')\";\n\nmsg.topic = \"INSERT INTO swb(username,swbID,swno,state) VALUES ('\" + username + \"','\" + swbID + \"','\" + swno + \"','\" + state + \"')\";\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 320,
+        "wires": [
+            [
+                "15c625ff185d9c45"
+            ]
+        ]
+    },
+    {
+        "id": "927db0d9bea48380",
+        "type": "debug",
+        "z": "02e369dabf186465",
+        "name": "debug 12",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 480,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "15c625ff185d9c45",
+        "type": "mysql",
+        "z": "02e369dabf186465",
+        "mydb": "c8d18af9033ef444",
+        "name": "",
+        "x": 810,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f1b21e5e0e57e337",
+        "type": "mqtt in",
+        "z": "02e369dabf186465",
+        "name": "",
+        "topic": "/Abhiyantrik/LastWillTestament/#",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "3142eebd969dc321",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 310,
+        "y": 540,
+        "wires": [
+            [
+                "e30389550b53b914"
+            ]
+        ]
+    },
+    {
+        "id": "e30389550b53b914",
+        "type": "debug",
+        "z": "02e369dabf186465",
+        "name": "MQ msgs on LWT Topics",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 610,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "482035311319f970",
+        "type": "http in",
+        "z": "f6784da6822cad8c",
+        "name": "",
+        "url": "/swbbInsert",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 320,
+        "y": 220,
+        "wires": [
+            [
+                "7e70a244b41a4234"
+            ]
+        ]
+    },
+    {
+        "id": "16922d9f7e880469",
+        "type": "mqtt out",
+        "z": "f6784da6822cad8c",
+        "name": "",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "3142eebd969dc321",
+        "x": 810,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "2916509242452d09",
+        "type": "mqtt in",
+        "z": "f6784da6822cad8c",
+        "name": "",
+        "topic": "meta4home/ToSWB/#",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "3142eebd969dc321",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 340,
+        "y": 320,
+        "wires": [
+            [
+                "b95161c185a9fe92"
+            ]
+        ]
+    },
+    {
+        "id": "b95161c185a9fe92",
+        "type": "debug",
+        "z": "f6784da6822cad8c",
+        "name": "debug 13",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 560,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "7e70a244b41a4234",
+        "type": "function",
+        "z": "f6784da6822cad8c",
+        "name": "pre processing",
+        "func": "var topic = \"meta4home/\" +\"ToSWB/\"+ msg.payload.username + \"/\" + msg.payload.swbID ;\nmsg.topic = topic;\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 220,
+        "wires": [
+            [
+                "16922d9f7e880469"
+            ]
+        ]
+    },
+    {
+        "id": "5a855ba71dfe1f8b",
+        "type": "http in",
+        "z": "363bcc165f112c4a",
+        "name": "",
+        "url": "/swbInsert",
+        "method": "post",
+        "upload": true,
+        "swaggerDoc": "",
+        "x": 220,
+        "y": 120,
+        "wires": [
+            [
+                "611f35504371b738"
+            ]
+        ]
+    },
+    {
+        "id": "611f35504371b738",
+        "type": "function",
+        "z": "363bcc165f112c4a",
+        "name": "Insert Function",
+        "func": "var swbid = msg.payload.swbid;\nvar swst = msg.payload.swst;\nvar status = msg.payload.status;\nvar swbcnt = msg.payload.swbcnt;\nvar applcnt = msg.payload.applcnt;\nvar userid = msg.payload.userid;\n\n// Construct SQL query\nmsg.topic  = \"INSERT INTO swbstate (swbid, swst, status, swbcnt, applcnt, userid) VALUES ('\" + swbid + \"', '\" + swst + \"', '\" + status + \"', \" + swbcnt + \", \" + applcnt + \", \" + userid + \")\";\n\n// Set query as payload of output message\n\n// Return message\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 120,
+        "wires": [
+            [
+                "5e8dcd7dd663d4bc"
+            ]
+        ]
+    },
+    {
+        "id": "5e8dcd7dd663d4bc",
+        "type": "mysql",
+        "z": "363bcc165f112c4a",
+        "mydb": "c8d18af9033ef444",
+        "name": "swbstate",
+        "x": 600,
+        "y": 120,
+        "wires": [
+            [
+                "ed3f838e73fcec0a",
+                "ffbeb7ae4f32e032"
+            ]
+        ]
+    },
+    {
+        "id": "ed3f838e73fcec0a",
+        "type": "debug",
+        "z": "363bcc165f112c4a",
+        "name": "debug 22",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 800,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "73b27f591cf3d1f5",
+        "type": "mysql",
+        "z": "363bcc165f112c4a",
+        "mydb": "c8d18af9033ef444",
+        "name": "swbstate",
+        "x": 600,
+        "y": 200,
+        "wires": [
+            [
+                "d78e3459e4a1c7e3",
+                "85f5c3b0b6c35be5"
+            ]
+        ]
+    },
+    {
+        "id": "33475a97168514df",
+        "type": "function",
+        "z": "363bcc165f112c4a",
+        "name": "Read Function",
+        "func": "var userid = msg.payload.userid;\n\n//var query = \"SELECT * FROM swbstate WHERE  userid='\" + userid + \"'\";;\nvar query = \"SELECT swbid,swst,status FROM swbstate WHERE  userid='\" + userid + \"'\";;\n\nmsg.topic = query;\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 200,
+        "wires": [
+            [
+                "73b27f591cf3d1f5"
+            ]
+        ]
+    },
+    {
+        "id": "d78e3459e4a1c7e3",
+        "type": "debug",
+        "z": "363bcc165f112c4a",
+        "name": "debug 23",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "payload",
+        "statusType": "auto",
+        "x": 810,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "04aa43bbb10fb8a0",
+        "type": "http in",
+        "z": "363bcc165f112c4a",
+        "name": "",
+        "url": "/swbRead",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 220,
+        "y": 200,
+        "wires": [
+            [
+                "33475a97168514df"
+            ]
+        ]
+    },
+    {
+        "id": "1b4c4e78e89b745c",
+        "type": "http in",
+        "z": "363bcc165f112c4a",
+        "name": "",
+        "url": "/swbUpdate",
+        "method": "post",
+        "upload": true,
+        "swaggerDoc": "",
+        "x": 230,
+        "y": 280,
+        "wires": [
+            [
+                "79e37b05bd781889"
+            ]
+        ]
+    },
+    {
+        "id": "79e37b05bd781889",
+        "type": "function",
+        "z": "363bcc165f112c4a",
+        "name": "Update Function",
+        "func": "var swbid = msg.payload.swbid;\nvar userid = msg.payload.userid;\nvar swst = msg.payload.swst;\nvar status = msg.payload.status;\nvar swbcnt = msg.payload.swbcnt;\nvar applcnt = msg.payload.applcnt;\n\nvar query = \"UPDATE swbstate SET swst = '\"+swst+\"', status = '\"+status+\"', swbcnt = '\"+swbcnt+\"', applcnt = '\"+applcnt+\"' WHERE swbid = '\"+swbid+\"' AND userid = '\"+userid+\"'\";\n\nmsg.topic = query;\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 280,
+        "wires": [
+            [
+                "2a2857f64129f30b"
+            ]
+        ]
+    },
+    {
+        "id": "2a2857f64129f30b",
+        "type": "mysql",
+        "z": "363bcc165f112c4a",
+        "mydb": "c8d18af9033ef444",
+        "name": "swbstate",
+        "x": 600,
+        "y": 280,
+        "wires": [
+            [
+                "d63499cc2d8317d1",
+                "25aca2645a699cb0"
+            ]
+        ]
+    },
+    {
+        "id": "d63499cc2d8317d1",
+        "type": "debug",
+        "z": "363bcc165f112c4a",
+        "name": "debug 24",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 760,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "db50590de61516a6",
+        "type": "http in",
+        "z": "363bcc165f112c4a",
+        "name": "",
+        "url": "/swbDelete",
+        "method": "post",
+        "upload": true,
+        "swaggerDoc": "",
+        "x": 220,
+        "y": 360,
+        "wires": [
+            [
+                "c8bab387a63d02a7"
+            ]
+        ]
+    },
+    {
+        "id": "c8bab387a63d02a7",
+        "type": "function",
+        "z": "363bcc165f112c4a",
+        "name": "Delete Function",
+        "func": "var swbid = msg.payload.swbid;\nvar userid = msg.payload.userid;\n\nvar query = \"DELETE FROM swbstate WHERE swbid = '\"+swbid+\"' AND userid = '\"+userid+\"'\";\n\nmsg.topic = query;\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 360,
+        "wires": [
+            [
+                "1222deec253f85e6"
+            ]
+        ]
+    },
+    {
+        "id": "1222deec253f85e6",
+        "type": "mysql",
+        "z": "363bcc165f112c4a",
+        "mydb": "c8d18af9033ef444",
+        "name": "swbstate",
+        "x": 600,
+        "y": 360,
+        "wires": [
+            [
+                "89f4e2be3c960f11",
+                "858ea3e80faa0944"
+            ]
+        ]
+    },
+    {
+        "id": "89f4e2be3c960f11",
+        "type": "debug",
+        "z": "363bcc165f112c4a",
+        "name": "debug 25",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 760,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "85f5c3b0b6c35be5",
+        "type": "http response",
+        "z": "363bcc165f112c4a",
+        "name": "",
+        "statusCode": "",
+        "headers": {
+            "content-type": "application/json"
+        },
+        "x": 810,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "d48876dc1b4e29fb",
+        "type": "http response",
+        "z": "363bcc165f112c4a",
+        "name": "",
+        "statusCode": "",
+        "headers": {
+            "content-type": "application/json"
+        },
+        "x": 1090,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "ffbeb7ae4f32e032",
+        "type": "function",
+        "z": "363bcc165f112c4a",
+        "name": "function 19",
+        "func": "// Set a new value to msg.payload\nmsg.payload = \"200:OK|| Inserted\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 980,
+        "y": 140,
+        "wires": [
+            [
+                "d48876dc1b4e29fb"
+            ]
+        ]
+    },
+    {
+        "id": "aff4569694d175fc",
+        "type": "http response",
+        "z": "363bcc165f112c4a",
+        "name": "",
+        "statusCode": "",
+        "headers": {
+            "content-type": "application/json"
+        },
+        "x": 1110,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "25aca2645a699cb0",
+        "type": "function",
+        "z": "363bcc165f112c4a",
+        "name": "function 20",
+        "func": "// Set a new value to msg.payload\nmsg.payload = \"200:OK|| Updated\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1000,
+        "y": 320,
+        "wires": [
+            [
+                "aff4569694d175fc"
+            ]
+        ]
+    },
+    {
+        "id": "621621fc0901dd68",
+        "type": "http response",
+        "z": "363bcc165f112c4a",
+        "name": "",
+        "statusCode": "",
+        "headers": {
+            "content-type": "application/json"
+        },
+        "x": 1050,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "858ea3e80faa0944",
+        "type": "function",
+        "z": "363bcc165f112c4a",
+        "name": "function 21",
+        "func": "// Set a new value to msg.payload\nmsg.payload = \"200:OK|| Deleted\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 940,
+        "y": 420,
+        "wires": [
+            [
+                "621621fc0901dd68"
+            ]
+        ]
+    },
+    {
+        "id": "418b0b7fcaefe9d5",
+        "type": "function",
+        "z": "03d0cd951e4e306c",
+        "name": "Insert Time",
+        "func": "\nvar time = msg.payload.time; // Assuming the time input is sent in the \"time\" field of the POST request\nvar userid = msg.payload.userid; // Assuming the user ID is sent in the \"userid\" field of the POST request\nvar applName = msg.payload.applName;\nvar state = msg.payload.state;\n\nmsg.topic = \"INSERT INTO time (time,applName, userid,state) VALUES (?, ?,?,?)\";\nmsg.payload = [time, applName, userid, state];\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 410,
+        "y": 160,
+        "wires": [
+            [
+                "364c94acb356b85c"
+            ]
+        ]
+    },
+    {
+        "id": "40433d24126d7c9b",
+        "type": "debug",
+        "z": "03d0cd951e4e306c",
+        "name": "debug 30",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 800,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "364c94acb356b85c",
+        "type": "mysql",
+        "z": "03d0cd951e4e306c",
+        "mydb": "c8d18af9033ef444",
+        "name": "",
+        "x": 610,
+        "y": 160,
+        "wires": [
+            [
+                "40433d24126d7c9b"
+            ]
+        ]
+    },
+    {
+        "id": "879ba78c62d55998",
+        "type": "http in",
+        "z": "03d0cd951e4e306c",
+        "name": "",
+        "url": "/setTime",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 180,
+        "y": 160,
+        "wires": [
+            [
+                "418b0b7fcaefe9d5"
+            ]
+        ]
+    },
+    {
+        "id": "596f7fa90719beb4",
+        "type": "comment",
+        "z": "03d0cd951e4e306c",
+        "name": "Inserting time through postman",
+        "info": "",
+        "x": 210,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "9b1dfa184dd0104c",
+        "type": "mysql",
+        "z": "03d0cd951e4e306c",
+        "mydb": "c8d18af9033ef444",
+        "name": "",
+        "x": 690,
+        "y": 320,
+        "wires": [
+            [
+                "20bbc0399e0b9dcd"
+            ]
+        ]
+    },
+    {
+        "id": "2989915911f2a48f",
+        "type": "function",
+        "z": "03d0cd951e4e306c",
+        "name": "Check for time up",
+        "func": "var currentTime = new Date().toLocaleTimeString('en-IN', {\n    hour12: false,\n    hour: \"numeric\",\n    minute: \"numeric\",\n    timeZone: 'Asia/Kolkata'\n\n});\n\n// Set the SQL query in the msg.topic property\nmsg.topic = \"SELECT time.*,applconfig.* FROM time,applconfig where time ='\" + currentTime +\"' AND applconfig.applName= time.applName\";\n\n//msg.topic = \"SELECT * from time\";\n\n// Return the modified message object\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 320,
+        "wires": [
+            [
+                "9b1dfa184dd0104c"
+            ]
+        ]
+    },
+    {
+        "id": "584c8820bcb31e0b",
+        "type": "comment",
+        "z": "03d0cd951e4e306c",
+        "name": "simple",
+        "info": "# WE CAN SET TRIGGER for some timeinterval",
+        "x": 130,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "fe99f660ab168755",
+        "type": "trigger",
+        "z": "03d0cd951e4e306c",
+        "name": "",
+        "op1": "",
+        "op2": "",
+        "op1type": "date",
+        "op2type": "date",
+        "duration": "-10",
+        "extend": false,
+        "overrideDelay": false,
+        "units": "s",
+        "reset": "stop",
+        "bytopic": "topic",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 310,
+        "y": 320,
+        "wires": [
+            [
+                "2989915911f2a48f"
+            ]
+        ]
+    },
+    {
+        "id": "df21ad0f21a8aff4",
+        "type": "inject",
+        "z": "03d0cd951e4e306c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 320,
+        "wires": [
+            [
+                "fe99f660ab168755"
+            ]
+        ]
+    },
+    {
+        "id": "e7f56acc3b96c401",
+        "type": "inject",
+        "z": "03d0cd951e4e306c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "stop",
+        "payloadType": "str",
+        "x": 110,
+        "y": 380,
+        "wires": [
+            [
+                "fe99f660ab168755"
+            ]
+        ]
+    },
+    {
+        "id": "6957a980924e6a8d",
+        "type": "function",
+        "z": "03d0cd951e4e306c",
+        "name": "function 4",
+        "func": "var topic = \"meta4home/\" + \"ToSWB/\" + msg.payload.userid + \"/\" + msg.payload.swbid;\n\nvar swno=msg.payload.swno;\nvar state = msg.payload.state;\n\nmsg.topic = topic;\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 960,
+        "y": 320,
+        "wires": [
+            [
+                "660464fea865e9ca",
+                "1b0e2ccd6d802673"
+            ]
+        ]
+    },
+    {
+        "id": "660464fea865e9ca",
+        "type": "mqtt out",
+        "z": "03d0cd951e4e306c",
+        "name": "",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "3142eebd969dc321",
+        "x": 1110,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "0db11c3dec40b278",
+        "type": "mqtt in",
+        "z": "03d0cd951e4e306c",
+        "name": "",
+        "topic": "meta4home/ToSWB/16/#",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "3142eebd969dc321",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 230,
+        "y": 480,
+        "wires": [
+            [
+                "7637f50d58352994"
+            ]
+        ]
+    },
+    {
+        "id": "7637f50d58352994",
+        "type": "debug",
+        "z": "03d0cd951e4e306c",
+        "name": "debug 34",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 440,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "6c792d388d8cc2b0",
+        "type": "comment",
+        "z": "03d0cd951e4e306c",
+        "name": "Optimized not fully implemented",
+        "info": "",
+        "x": 210,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "32405f29dc3a5fd4",
+        "type": "mysql",
+        "z": "03d0cd951e4e306c",
+        "mydb": "c8d18af9033ef444",
+        "name": "",
+        "x": 730,
+        "y": 820,
+        "wires": [
+            [
+                "ab893a61a289b69a"
+            ]
+        ]
+    },
+    {
+        "id": "75d784a2130d2a02",
+        "type": "function",
+        "z": "03d0cd951e4e306c",
+        "name": "Check for time up",
+        "func": "var currentTime = new Date().toLocaleTimeString('en-IN', {\n    hour12: false,\n    hour: \"numeric\",\n    timeZone: 'Asia/Kolkata'\n\n});\n\n// Set the SQL query in the msg.topic property\nmsg.topic = \"SELECT time.*,applconfig.* FROM time,applconfig where time like '\" + currentTime +\"%' AND applconfig.applName= time.applName\";\n//msg.payload[currentTime];\n// Return the modified message object\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 550,
+        "y": 820,
+        "wires": [
+            [
+                "32405f29dc3a5fd4"
+            ]
+        ]
+    },
+    {
+        "id": "b2111a2896e9e764",
+        "type": "trigger",
+        "z": "03d0cd951e4e306c",
+        "name": "",
+        "op1": "",
+        "op2": "",
+        "op1type": "date",
+        "op2type": "date",
+        "duration": "-1",
+        "extend": false,
+        "overrideDelay": false,
+        "units": "hr",
+        "reset": "stop",
+        "bytopic": "topic",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 350,
+        "y": 820,
+        "wires": [
+            [
+                "75d784a2130d2a02"
+            ]
+        ]
+    },
+    {
+        "id": "12aa38d05053bf29",
+        "type": "inject",
+        "z": "03d0cd951e4e306c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 820,
+        "wires": [
+            [
+                "b2111a2896e9e764"
+            ]
+        ]
+    },
+    {
+        "id": "e677e39d9e79f0f7",
+        "type": "inject",
+        "z": "03d0cd951e4e306c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "stop",
+        "payloadType": "str",
+        "x": 150,
+        "y": 880,
+        "wires": [
+            [
+                "b2111a2896e9e764"
+            ]
+        ]
+    },
+    {
+        "id": "ab893a61a289b69a",
+        "type": "function",
+        "z": "03d0cd951e4e306c",
+        "name": "function 5",
+        "func": "var topic = \"meta4home/\" + \"ToSWB/\" + msg.payload.userid + \"/\" + msg.payload.swbid;\nvar swno=msg.payload.swno;\nvar state = msg.payload.state;\n\nmsg.topic = topic;\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 900,
+        "y": 820,
+        "wires": [
+            [
+                "6e83f903ae7cfa41"
+            ]
+        ]
+    },
+    {
+        "id": "6e83f903ae7cfa41",
+        "type": "mqtt out",
+        "z": "03d0cd951e4e306c",
+        "name": "",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "3142eebd969dc321",
+        "x": 1030,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "c8a68d6e16c7a758",
+        "type": "comment",
+        "z": "03d0cd951e4e306c",
+        "name": "SEND REVERSE COUNTER TO THE ESP32",
+        "info": "",
+        "x": 930,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "c31c7697ea45f4cc",
+        "type": "inject",
+        "z": "03d0cd951e4e306c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 1080,
+        "wires": [
+            [
+                "150be57ac9196bda"
+            ]
+        ]
+    },
+    {
+        "id": "f944dddb464a7729",
+        "type": "inject",
+        "z": "03d0cd951e4e306c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "stop",
+        "payloadType": "str",
+        "x": 190,
+        "y": 1140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "150be57ac9196bda",
+        "type": "function",
+        "z": "03d0cd951e4e306c",
+        "name": "function 6",
+        "func": "var currentTime = new Date().toLocaleTimeString('en-IN', {\n    hour12: false,\n    hour: \"numeric\",\n    timeZone: 'Asia/Kolkata'\n\n});\nmsg.payload=currentTime;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
+        "y": 1080,
+        "wires": [
+            [
+                "a98d547072839cd0"
+            ]
+        ]
+    },
+    {
+        "id": "a98d547072839cd0",
+        "type": "debug",
+        "z": "03d0cd951e4e306c",
+        "name": "debug 35",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 800,
+        "y": 1080,
+        "wires": []
+    },
+    {
+        "id": "c0a4532eddf75d60",
+        "type": "comment",
+        "z": "03d0cd951e4e306c",
+        "name": "Testing",
+        "info": "",
+        "x": 130,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "d678cedafc06705a",
+        "type": "mqtt in",
+        "z": "03d0cd951e4e306c",
+        "name": "",
+        "topic": "meta4home/ToSWB/73/#",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "3142eebd969dc321",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 230,
+        "y": 560,
+        "wires": [
+            [
+                "8b00884e69a537d3"
+            ]
+        ]
+    },
+    {
+        "id": "8b00884e69a537d3",
+        "type": "debug",
+        "z": "03d0cd951e4e306c",
+        "name": "debug 37",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 440,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "4b690606c3db060c",
+        "type": "mqtt in",
+        "z": "03d0cd951e4e306c",
+        "name": "",
+        "topic": "meta4home/ToSWB/#",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "3142eebd969dc321",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 680,
+        "y": 540,
+        "wires": [
+            [
+                "d2c42c6810debc61"
+            ]
+        ]
+    },
+    {
+        "id": "d2c42c6810debc61",
+        "type": "debug",
+        "z": "03d0cd951e4e306c",
+        "name": "debug 38",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 900,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "1b0e2ccd6d802673",
+        "type": "debug",
+        "z": "03d0cd951e4e306c",
+        "name": "debug 39",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "topic",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1100,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "20bbc0399e0b9dcd",
+        "type": "split",
+        "z": "03d0cd951e4e306c",
+        "name": "",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 830,
+        "y": 320,
+        "wires": [
+            [
+                "6957a980924e6a8d"
+            ]
+        ]
+    },
+    {
+        "id": "6a1c8bd686e07403",
+        "type": "mqtt in",
+        "z": "57065eb5c9afd23b",
+        "name": "",
+        "topic": "/Abhiyantrik/fromSWB/#",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "3142eebd969dc321",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 180,
+        "y": 540,
+        "wires": [
+            [
+                "c18aeba9991e520d",
+                "d0283ddfd860f824"
+            ]
+        ]
+    },
+    {
+        "id": "c18aeba9991e520d",
+        "type": "debug",
+        "z": "57065eb5c9afd23b",
+        "name": "debug 43",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 420,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "fa5b3399cdee91b3",
+        "type": "mysql",
+        "z": "57065eb5c9afd23b",
+        "mydb": "c8d18af9033ef444",
+        "name": "SWB and Users",
+        "x": 800,
+        "y": 540,
+        "wires": [
+            [
+                "4a4fe72f0ba40a20",
+                "97342dd18403be26"
+            ]
+        ]
+    },
+    {
+        "id": "4a4fe72f0ba40a20",
+        "type": "debug",
+        "z": "57065eb5c9afd23b",
+        "name": "debug 44",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 980,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "d0283ddfd860f824",
+        "type": "function",
+        "z": "57065eb5c9afd23b",
+        "name": "Insert/Update",
+        "func": "var username = msg.payload.username;\nvar swbID = msg.payload.swbID;\nvar swSt = msg.payload.swSt;\n\n//msg.topic = \"INSERT INTO swbstate(username,swbID,swSt) VALUES ('\" + username + \"','\" + swbID + \"','\" + swSt+ \"')\";\n\n// Construct the query string\nvar query = \"INSERT INTO swbstate(swbID,username,swSt,userid) select '\" + swbID + \"', '\" + username + \"','\" + swSt + \"',userid from users where users.username='\" + username+\"' ON DUPLICATE KEY UPDATE username = '\" + username + \"', swSt = '\" +swSt+\"'\";\n\n// Set the query as payload for MySQL node\nmsg.topic = query;\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 540,
+        "wires": [
+            [
+                "fa5b3399cdee91b3"
+            ]
+        ],
+        "info": "Insert and update operation along with username userid intergaration"
+    },
+    {
+        "id": "28db8f76e1f6919b",
+        "type": "http response",
+        "z": "57065eb5c9afd23b",
+        "name": "",
+        "statusCode": "",
+        "headers": {
+            "content-type": "application/json"
+        },
+        "x": 990,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "97342dd18403be26",
+        "type": "function",
+        "z": "57065eb5c9afd23b",
+        "name": "function 24",
+        "func": "// Set a new value to msg.payload\nmsg.payload = \"200:OK|| Inserted\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 900,
+        "y": 640,
+        "wires": [
+            [
+                "28db8f76e1f6919b"
+            ]
+        ]
+    },
+    {
+        "id": "8b98d131c4a53a31",
+        "type": "http in",
+        "z": "ab93e1e0465af7e2",
+        "name": "",
+        "url": "/fromAppSw",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 170,
+        "y": 160,
+        "wires": [
+            [
+                "cf5f327e9ab7210b",
+                "46ad29e96bd18cab"
+            ]
+        ]
+    },
+    {
+        "id": "eeaec08714e9f7d7",
+        "type": "mqtt out",
+        "z": "ab93e1e0465af7e2",
+        "name": "",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "3142eebd969dc321",
+        "x": 930,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "345def3c3179f8a7",
+        "type": "mqtt in",
+        "z": "ab93e1e0465af7e2",
+        "name": "",
+        "topic": "/Abhiyantrik/fromAPP/#",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "3142eebd969dc321",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 280,
+        "y": 380,
+        "wires": [
+            [
+                "69e8d403124f413c"
+            ]
+        ]
+    },
+    {
+        "id": "69e8d403124f413c",
+        "type": "debug",
+        "z": "ab93e1e0465af7e2",
+        "name": "debug 42",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 500,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "2fc5105f8dd5d59c",
+        "type": "function",
+        "z": "ab93e1e0465af7e2",
+        "name": "pre processing",
+        "func": "var topic = \"/Abhiyantrik/\" + \"fromAPP/\" + msg.payload.jsonData.username + \"/\" + msg.payload.jsonData.swbID ;\nvar obj = msg.payload.jsonData;\nmsg.payload=obj;\n\nmsg.topic = topic;\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 160,
+        "wires": [
+            [
+                "bb6f2470929164a9",
+                "baa2663e0cba58ca"
+            ]
+        ]
+    },
+    {
+        "id": "cf5f327e9ab7210b",
+        "type": "debug",
+        "z": "ab93e1e0465af7e2",
+        "name": "debug 61",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 160,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "46ad29e96bd18cab",
+        "type": "json",
+        "z": "ab93e1e0465af7e2",
+        "name": "",
+        "property": "payload.jsonData",
+        "action": "",
+        "pretty": false,
+        "x": 350,
+        "y": 160,
+        "wires": [
+            [
+                "7ae211a11308a720",
+                "2fc5105f8dd5d59c"
+            ]
+        ]
+    },
+    {
+        "id": "7ae211a11308a720",
+        "type": "debug",
+        "z": "ab93e1e0465af7e2",
+        "name": "debug 63",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 360,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "bb6f2470929164a9",
+        "type": "function",
+        "z": "ab93e1e0465af7e2",
+        "name": "post processing",
+        "func": "// Extract field1 and field2 from the payload object\nconst { MsgType,username, swbID, swNo, SwSt} = msg.payload;\n\n// Create a new object with only field1 and field2\nmsg.payload = { MsgType, username, swbID, swNo, SwSt };\n\n// Return the modified message object\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 740,
+        "y": 160,
+        "wires": [
+            [
+                "eeaec08714e9f7d7",
+                "3ecd2aa0dacfcc4d"
+            ]
+        ]
+    },
+    {
+        "id": "2faffe76a5a9899e",
+        "type": "comment",
+        "z": "ab93e1e0465af7e2",
+        "name": "Click to know why Postprocessing?",
+        "info": "Status is not needed in this field ,\n Hence removed in the postprocessing",
+        "x": 820,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "baa2663e0cba58ca",
+        "type": "debug",
+        "z": "ab93e1e0465af7e2",
+        "name": "debug 68",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 560,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "d83d8e6cb4082438",
+        "type": "http response",
+        "z": "ab93e1e0465af7e2",
+        "name": "",
+        "statusCode": "",
+        "headers": {
+            "content-type": "application/json"
+        },
+        "x": 1010,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "3ecd2aa0dacfcc4d",
+        "type": "function",
+        "z": "ab93e1e0465af7e2",
+        "name": "function 25",
+        "func": "// Set a new value to msg.payload\nmsg.payload = \"200:OK|| mqtt msg sent \";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 900,
+        "y": 240,
+        "wires": [
+            [
+                "d83d8e6cb4082438"
+            ]
+        ]
+    },
+    {
+        "id": "de4739a0a486a990",
+        "type": "http in",
+        "z": "ab93e1e0465af7e2",
+        "name": "",
+        "url": "/fromAppFr",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 160,
+        "y": 560,
+        "wires": [
+            [
+                "05a596db9a9a0c32"
+            ]
+        ]
+    },
+    {
+        "id": "5d8f842293b58749",
+        "type": "mqtt out",
+        "z": "ab93e1e0465af7e2",
+        "name": "",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "3142eebd969dc321",
+        "x": 930,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "cb4db92f5cbee51f",
+        "type": "function",
+        "z": "ab93e1e0465af7e2",
+        "name": "pre processing",
+        "func": "var topic = \"/Abhiyantrik/\" + \"fromAPP/\" + msg.payload.jsonData.username + \"/\" + msg.payload.jsonData.swbID ;\nvar obj = msg.payload.jsonData;\nmsg.payload=obj;\n\nmsg.topic = topic;\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 560,
+        "wires": [
+            [
+                "383f963bdd922edc",
+                "5d8f842293b58749",
+                "8533fa79efc5ba96"
+            ]
+        ]
+    },
+    {
+        "id": "05a596db9a9a0c32",
+        "type": "json",
+        "z": "ab93e1e0465af7e2",
+        "name": "",
+        "property": "payload.jsonData",
+        "action": "",
+        "pretty": false,
+        "x": 350,
+        "y": 560,
+        "wires": [
+            [
+                "cb4db92f5cbee51f"
+            ]
+        ]
+    },
+    {
+        "id": "383f963bdd922edc",
+        "type": "debug",
+        "z": "ab93e1e0465af7e2",
+        "name": "debug 76",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 560,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "d4836b434f50ef8a",
+        "type": "http response",
+        "z": "ab93e1e0465af7e2",
+        "name": "",
+        "statusCode": "",
+        "headers": {
+            "content-type": "application/json"
+        },
+        "x": 1010,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "8533fa79efc5ba96",
+        "type": "function",
+        "z": "ab93e1e0465af7e2",
+        "name": "function 29",
+        "func": "// Set a new value to msg.payload\nmsg.payload = \"200:OK|| mqtt msg sent \";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 900,
+        "y": 640,
+        "wires": [
+            [
+                "d4836b434f50ef8a"
+            ]
+        ]
+    },
+    {
+        "id": "a81085fd78d37dc2",
+        "type": "mqtt in",
+        "z": "d6101c9cce6becf0",
+        "name": "",
+        "topic": "/Abhiyantrik/LastWillTestament/#",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "3142eebd969dc321",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 290,
+        "y": 120,
+        "wires": [
+            [
+                "afdcb9825ab45b77",
+                "4b239fe6f9b6eaa3"
+            ]
+        ]
+    },
+    {
+        "id": "8246eb4621a6fc22",
+        "type": "debug",
+        "z": "d6101c9cce6becf0",
+        "name": "MQ msgs on LWT Topics",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1050,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "afdcb9825ab45b77",
+        "type": "function",
+        "z": "d6101c9cce6becf0",
+        "name": "Update Function",
+        "func": "var swbID = msg.payload.swbID;\nvar status = msg.payload.status;\n\n// Construct the query string\nvar query = \"UPDATE swbstate SET status = '\" + status + \"' where swbid='\" + swbID+\"'\";\n\n// Set the query as payload for MySQL node\nmsg.topic = query;\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 120,
+        "wires": [
+            [
+                "5da2284372505302"
+            ]
+        ]
+    },
+    {
+        "id": "5da2284372505302",
+        "type": "mysql",
+        "z": "d6101c9cce6becf0",
+        "mydb": "c8d18af9033ef444",
+        "name": "SWB",
+        "x": 830,
+        "y": 120,
+        "wires": [
+            [
+                "8246eb4621a6fc22",
+                "482c127eba555b56"
+            ]
+        ]
+    },
+    {
+        "id": "4b239fe6f9b6eaa3",
+        "type": "debug",
+        "z": "d6101c9cce6becf0",
+        "name": "MQ msgs on LWT Topics",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 610,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "d35bf4d4f01c6565",
+        "type": "http response",
+        "z": "d6101c9cce6becf0",
+        "name": "",
+        "statusCode": "",
+        "headers": {
+            "content-type": "application/json"
+        },
+        "x": 1090,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "482c127eba555b56",
+        "type": "function",
+        "z": "d6101c9cce6becf0",
+        "name": "function 26",
+        "func": "// Set a new value to msg.payload\nmsg.payload = \"200:OK|| Inserted\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 980,
+        "y": 220,
+        "wires": [
+            [
+                "d35bf4d4f01c6565"
+            ]
+        ]
+    },
+    {
+        "id": "ac2d5fb072f79f19",
+        "type": "http in",
+        "z": "b0b5df07122a59a0",
+        "name": "",
+        "url": "/swbStatus",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 240,
+        "y": 140,
+        "wires": [
+            [
+                "cb352b74e257cf0f",
+                "93ac042b3e87060c"
+            ]
+        ]
+    },
+    {
+        "id": "324c7c5cfe355be8",
+        "type": "mqtt out",
+        "z": "b0b5df07122a59a0",
+        "name": "",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "3142eebd969dc321",
+        "x": 930,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "3443c08d026f0994",
+        "type": "mqtt in",
+        "z": "b0b5df07122a59a0",
+        "name": "",
+        "topic": "/Abhiyantrik/fromAPP/#",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "3142eebd969dc321",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 458,
+        "y": 361,
+        "wires": [
+            [
+                "14ea7b697c866edf"
+            ]
+        ]
+    },
+    {
+        "id": "14ea7b697c866edf",
+        "type": "debug",
+        "z": "b0b5df07122a59a0",
+        "name": "debug 64",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 638,
+        "y": 361,
+        "wires": []
+    },
+    {
+        "id": "d24aa1b304e7cafb",
+        "type": "function",
+        "z": "b0b5df07122a59a0",
+        "name": "pre processing",
+        "func": "var topic = \"/Abhiyantrik/\" + \"fromAPP/\" + msg.payload.jsonData.username + \"/\" + msg.payload.jsonData.swbID ;\nvar obj = msg.payload.jsonData;\nmsg.payload=obj;\n\nmsg.topic = topic;\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 730,
+        "y": 140,
+        "wires": [
+            [
+                "324c7c5cfe355be8",
+                "a3c1e88e9538dd91"
+            ]
+        ]
+    },
+    {
+        "id": "cb352b74e257cf0f",
+        "type": "debug",
+        "z": "b0b5df07122a59a0",
+        "name": "debug 65",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 398,
+        "y": 241,
+        "wires": []
+    },
+    {
+        "id": "93ac042b3e87060c",
+        "type": "json",
+        "z": "b0b5df07122a59a0",
+        "name": "",
+        "property": "payload.jsonData",
+        "action": "",
+        "pretty": false,
+        "x": 490,
+        "y": 140,
+        "wires": [
+            [
+                "d24aa1b304e7cafb"
+            ]
+        ]
+    },
+    {
+        "id": "499f992ff59a98a4",
+        "type": "http response",
+        "z": "b0b5df07122a59a0",
+        "name": "",
+        "statusCode": "",
+        "headers": {
+            "content-type": "application/json"
+        },
+        "x": 1050,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "a3c1e88e9538dd91",
+        "type": "function",
+        "z": "b0b5df07122a59a0",
+        "name": "function 27",
+        "func": "// Set a new value to msg.payload\nmsg.payload = \"200:OK|| mqtt msg sent\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 940,
+        "y": 220,
+        "wires": [
+            [
+                "499f992ff59a98a4"
+            ]
+        ]
+    },
+    {
+        "id": "f885d62e17b32141",
+        "type": "http in",
+        "z": "620073049bb61f46",
+        "name": "",
+        "url": "/sfrConfig",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 260,
+        "y": 200,
+        "wires": [
+            [
+                "684c77e17ad1d727",
+                "820c72c26c400c73"
+            ]
+        ]
+    },
+    {
+        "id": "a46a270ac449a193",
+        "type": "mqtt out",
+        "z": "620073049bb61f46",
+        "name": "",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "3142eebd969dc321",
+        "x": 950,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "1b04dfeaf54e7089",
+        "type": "mqtt in",
+        "z": "620073049bb61f46",
+        "name": "",
+        "topic": "/Abhiyantrik/fromAPP/#",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "3142eebd969dc321",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 478,
+        "y": 421,
+        "wires": [
+            [
+                "e3820f1f0500c3dd"
+            ]
+        ]
+    },
+    {
+        "id": "e3820f1f0500c3dd",
+        "type": "debug",
+        "z": "620073049bb61f46",
+        "name": "debug 66",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 658,
+        "y": 421,
+        "wires": []
+    },
+    {
+        "id": "0d80d80d4b44e93f",
+        "type": "function",
+        "z": "620073049bb61f46",
+        "name": "pre processing",
+        "func": "var topic = \"/Abhiyantrik/\" + \"fromAPP/\" + msg.payload.jsonData.username + \"/\" + msg.payload.jsonData.swbID ;\nvar obj = msg.payload.jsonData;\nmsg.payload=obj;\n\nmsg.topic = topic;\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 750,
+        "y": 200,
+        "wires": [
+            [
+                "a46a270ac449a193",
+                "0924584fb9c3dfbb"
+            ]
+        ]
+    },
+    {
+        "id": "684c77e17ad1d727",
+        "type": "debug",
+        "z": "620073049bb61f46",
+        "name": "debug 67",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 418,
+        "y": 301,
+        "wires": []
+    },
+    {
+        "id": "820c72c26c400c73",
+        "type": "json",
+        "z": "620073049bb61f46",
+        "name": "",
+        "property": "payload.jsonData",
+        "action": "",
+        "pretty": false,
+        "x": 510,
+        "y": 200,
+        "wires": [
+            [
+                "0d80d80d4b44e93f"
+            ]
+        ]
+    },
+    {
+        "id": "a9459db5f52363ed",
+        "type": "http response",
+        "z": "620073049bb61f46",
+        "name": "",
+        "statusCode": "",
+        "headers": {
+            "content-type": "application/json"
+        },
+        "x": 1070,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "0924584fb9c3dfbb",
+        "type": "function",
+        "z": "620073049bb61f46",
+        "name": "function 28",
+        "func": "// Set a new value to msg.payload\nmsg.payload = \"200:OK|| Mqtt msg sent\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 960,
+        "y": 300,
+        "wires": [
+            [
+                "a9459db5f52363ed"
+            ]
+        ]
+    },
+    {
+        "id": "e08d28119fe6806a",
+        "type": "http in",
+        "z": "456a43a0d0b46937",
+        "name": "",
+        "url": "/frconfigUpdate",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 120,
+        "y": 180,
+        "wires": [
+            [
+                "a86ccec5519def1c"
+            ]
+        ]
+    },
+    {
+        "id": "88dcf3c32668da0a",
+        "type": "mqtt out",
+        "z": "456a43a0d0b46937",
+        "name": "",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "3142eebd969dc321",
+        "x": 950,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "02cc0d0504bdce15",
+        "type": "mqtt in",
+        "z": "456a43a0d0b46937",
+        "name": "",
+        "topic": "/Abhiyantrik/fromAPP/#",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "3142eebd969dc321",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 420,
+        "y": 360,
+        "wires": [
+            [
+                "70d292704ca6871f"
+            ]
+        ]
+    },
+    {
+        "id": "70d292704ca6871f",
+        "type": "debug",
+        "z": "456a43a0d0b46937",
+        "name": "debug 69",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 600,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "5f4bfc3f28a7fe90",
+        "type": "function",
+        "z": "456a43a0d0b46937",
+        "name": "MQTT pre processing",
+        "func": "var topic = \"/Abhiyantrik/\" + \"fromAPP/\" + msg.payload.jsonData.username + \"/\" + msg.payload.jsonData.swbID ;\nvar obj = msg.payload.jsonData;\nmsg.payload=obj;\n\nmsg.topic = topic;\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 740,
+        "y": 260,
+        "wires": [
+            [
+                "88dcf3c32668da0a",
+                "c16d1a42c4f7fbe3"
+            ]
+        ]
+    },
+    {
+        "id": "a86ccec5519def1c",
+        "type": "json",
+        "z": "456a43a0d0b46937",
+        "name": "",
+        "property": "payload.jsonData",
+        "action": "",
+        "pretty": false,
+        "x": 330,
+        "y": 180,
+        "wires": [
+            [
+                "c90c5e30ca269e34",
+                "5f4bfc3f28a7fe90"
+            ]
+        ]
+    },
+    {
+        "id": "c90c5e30ca269e34",
+        "type": "function",
+        "z": "456a43a0d0b46937",
+        "name": "Insert/Update table",
+        "func": "var applName = msg.payload.jsonData.applName;\nvar swbID = msg.payload.jsonData.swbID;\nvar A2 = msg.payload.jsonData.A2;\nvar A1 = msg.payload.jsonData.A1;\nvar A0 = msg.payload.jsonData.A0;\nvar userid = msg.payload.jsonData.userid;\nvar M1 = msg.payload.jsonData.M1;\nvar M2 = msg.payload.jsonData.M2;\nvar sfrno = msg.payload.jsonData.sfrno;\n\nvar query = \"INSERT INTO frconfig (applName, swbID, A2, A1, A0, userid, M1, M2, sfrno) VALUES ('\" + applName+ \"', '\" + swbID+ \"', '\" + A2+ \"','\" + A1+ \"', '\" + A0+ \"', '\" + userid+ \"','\" + M1+ \"','\" + M2+ \"', '\" + sfrno+ \"') ON DUPLICATE KEY UPDATE ApplName = '\" + applName+ \"',swbID = '\" + swbID+ \"', A2 = '\" + A2+ \"', A1 ='\" + A1+ \"', A0 = '\" + A0+ \"', userid = '\" + userid+ \"', M1 ='\" + M1+ \"', M2 ='\" + M2+ \"',sfrno = '\" + sfrno+ \"'\";\n\nmsg.topic = query;\n\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 570,
+        "y": 120,
+        "wires": [
+            [
+                "785bc3e59d6aa518",
+                "88eee5f2931c59ee"
+            ]
+        ]
+    },
+    {
+        "id": "785bc3e59d6aa518",
+        "type": "mysql",
+        "z": "456a43a0d0b46937",
+        "mydb": "c8d18af9033ef444",
+        "name": "frconfig",
+        "x": 760,
+        "y": 100,
+        "wires": [
+            [
+                "4975f34530199f94",
+                "45a4de5454abf9bb"
+            ]
+        ]
+    },
+    {
+        "id": "4975f34530199f94",
+        "type": "debug",
+        "z": "456a43a0d0b46937",
+        "name": "debug 70",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 980,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "88eee5f2931c59ee",
+        "type": "debug",
+        "z": "456a43a0d0b46937",
+        "name": "debug 72",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "topic",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 800,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "451c282aaa91538a",
+        "type": "mysql",
+        "z": "456a43a0d0b46937",
+        "mydb": "c8d18af9033ef444",
+        "name": "frconfig",
+        "x": 540,
+        "y": 580,
+        "wires": [
+            [
+                "735dd1cf1b0300e9",
+                "ac16a9c6c730a773"
+            ]
+        ]
+    },
+    {
+        "id": "0be5336f15c53956",
+        "type": "function",
+        "z": "456a43a0d0b46937",
+        "name": "Read Function",
+        "func": "var userid = msg.payload.userid;\n\nvar query = \"SELECT * FROM frconfig WHERE  userid='\" + userid + \"'\";;\n\nmsg.topic = query;\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 580,
+        "wires": [
+            [
+                "451c282aaa91538a"
+            ]
+        ]
+    },
+    {
+        "id": "735dd1cf1b0300e9",
+        "type": "debug",
+        "z": "456a43a0d0b46937",
+        "name": "debug 73",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "payload",
+        "statusType": "auto",
+        "x": 750,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "a2a077e362dd43e8",
+        "type": "http in",
+        "z": "456a43a0d0b46937",
+        "name": "",
+        "url": "/frconfigRead",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 170,
+        "y": 580,
+        "wires": [
+            [
+                "0be5336f15c53956"
+            ]
+        ]
+    },
+    {
+        "id": "ac16a9c6c730a773",
+        "type": "http response",
+        "z": "456a43a0d0b46937",
+        "name": "",
+        "statusCode": "",
+        "headers": {
+            "content-type": "application/json"
+        },
+        "x": 750,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "6e9baa78e8685550",
+        "type": "http response",
+        "z": "456a43a0d0b46937",
+        "name": "",
+        "statusCode": "",
+        "headers": {
+            "content-type": "application/json"
+        },
+        "x": 1170,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "45a4de5454abf9bb",
+        "type": "function",
+        "z": "456a43a0d0b46937",
+        "name": "response",
+        "func": "// Set a new value to msg.payload\nmsg.payload = \"200:OK|| Inserted\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1050,
+        "y": 160,
+        "wires": [
+            [
+                "6e9baa78e8685550"
+            ]
+        ]
+    },
+    {
+        "id": "658cff72275b7bba",
+        "type": "http response",
+        "z": "456a43a0d0b46937",
+        "name": "",
+        "statusCode": "",
+        "headers": {
+            "content-type": "application/json"
+        },
+        "x": 1170,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "c16d1a42c4f7fbe3",
+        "type": "function",
+        "z": "456a43a0d0b46937",
+        "name": "response",
+        "func": "// Set a new value to msg.payload\nmsg.payload = \"200:OK|| mqtt msg sent\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1050,
+        "y": 340,
+        "wires": [
+            [
+                "658cff72275b7bba"
+            ]
+        ]
+    },
+    {
+        "id": "5ca736dca5deb65f",
+        "type": "mqtt in",
+        "z": "f0fba540309a08b2",
+        "name": "",
+        "topic": "/Abhiyantrik/#",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "3142eebd969dc321",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 430,
+        "y": 360,
+        "wires": [
+            [
+                "62dde48af8dd8736"
+            ]
+        ]
+    },
+    {
+        "id": "62dde48af8dd8736",
+        "type": "debug",
+        "z": "f0fba540309a08b2",
+        "name": "Mqtt subscribe node",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 700,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "d824c02fcb7dd9cd",
+        "type": "mqtt out",
+        "z": "f0fba540309a08b2",
+        "name": "",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "3142eebd969dc321",
+        "x": 710,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "2a7e88306925a9bd",
+        "type": "inject",
+        "z": "f0fba540309a08b2",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "/Abhiyantrik/test/",
+        "payload": "{\"hello\":2}",
+        "payloadType": "json",
+        "x": 470,
+        "y": 140,
+        "wires": [
+            [
+                "d824c02fcb7dd9cd"
+            ]
+        ]
+    }
+]
